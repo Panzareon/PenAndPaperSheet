@@ -1,16 +1,10 @@
-export enum StatType {
-    Hp,
-    Aura,
-    Strenth,
-    Speed,
-    Dexterity,
-    Sense,
-    Nen,
-
-    Manipulator,
-    Emitter,
-    Enhancer,
-    Transmuter,
-    Conjurer,
-    Specialist,
+export interface StatType {
+  name : string,
+  newGroup : boolean,
+  newLine : boolean,
+  label : string,
+  canUpgrade : boolean,
+  costMultiplier? : number,
+  startvalue? : number,
+  dependsOn? : string,
 }

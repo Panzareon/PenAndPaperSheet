@@ -1,5 +1,18 @@
-<ul>
-    <li *ngFor="let skill of character.skills" (click)="selectSkill(skill)">
-        {{skill.name}} ({{skill.auraUse}})
-    </li>
-</ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Dice</th>
+        <th>Damage</th>
+        <th>Cost</th>
+        <th>Description</th>
+        <th>TP Cost</th>
+    </tr>
+    <tr *ngFor="let skill of character.skills">
+        <td>{{skill.name}}</td>
+        <td (click)="rollSkill(skill)">{{getDiceDescription(skill)}}</td>
+        <td (click)="rollSkillDamage(skill)">{{getDamageDiceDescription(skill)}}</td>
+        <td>{{skill.cost}}</td>
+        <td>{{skill.description}}</td>
+        <td>{{skill.tpSpent}}</td>
+    </tr>
+</table>

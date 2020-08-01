@@ -1,0 +1,12 @@
+span.stat label {
+    padding: 2px;
+}
+
+span.stat label.main-label {
+    min-width: 100px;
+    display: inline-block;
+}
+
+span.stat input {
+    width: 40px;
+}

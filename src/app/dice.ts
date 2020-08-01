@@ -22,7 +22,7 @@ export interface Dice {
     /**
      * The stat, that the number of dice depends upon, if type is set to Stat.
      */
-    statType?: StatType;
+    statType?: string;
 
     /**
      * The number of sides that the dice have.

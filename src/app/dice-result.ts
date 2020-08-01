@@ -2,7 +2,7 @@ export interface DiceResult {
     /**
      * The rolled number.
      */
-    number: Number;
+    number: number;
 
     /**
      * If the result is the maximum number.
@@ -12,5 +12,5 @@ export interface DiceResult {
     /**
      * The number of sides of the dice.
      */
-    dice: Number;
+    dice: number;
 }

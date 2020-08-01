@@ -1,6 +1,11 @@
-<ul>
-    <li *ngFor="let stat of getStats()">
-        <label>{{stat}}: </label>
-        <input [(ngModel)]="character.stats[stat]">
-    </li>
-</ul>
+
+<span class="stat" *ngFor="let stat of getStats()">
+    <br *ngIf="newGroup(stat)">
+    <br *ngIf="addNewline(stat)">
+    <label [ngClass]="{'main-label' : addNewline(stat)}">{{getLabel(stat)}}</label>
+    <input [(ngModel)]="character.stats[stat]">
+    <span *ngIf="canUpgrade(stat)">
+        <button (click)="upgradeStat(stat)">+</button>
+        ({{statCost(stat)}})
+    </span>
+</span>

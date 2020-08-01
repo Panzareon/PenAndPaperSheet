@@ -3,6 +3,7 @@ import { Character } from './character';
 import { StatType } from './stat-type';
 import { Skill } from './skill';
 import { Dice, NumberOfDiceType } from './dice';
+import { StatsService } from './stats.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Dice, NumberOfDiceType } from './dice';
 export class CharacterService {
   character: Character = this.createCharacter('Initial Name');
 
-  constructor() { }
+  constructor(private statsService : StatsService) { }
 
   getCharacter(): Character {
     return this.character;
@@ -22,23 +23,21 @@ export class CharacterService {
       skills: this.createDefaultSkills(),
       stats: [],
     };
-    for (let item in StatType) {
-      if (isNaN(Number(item))) {
-        character.stats[item] = 0;
-      }
+    for (let item of this.statsService.stats) {
+      character.stats[item.name] = (item.dependsOn ? this.statsService.getStat(item.dependsOn).startvalue : item.startvalue) ?? 0;
     }
     return character;
   }
 
   createDefaultSkills(): Skill[] {
     return [
-      {name:'Strike', description:'A simple hit enforced with Nen', dice: [this.createStatDice(StatType.Enhancer, 6)], damage:[this.createSimpleDice(1, 6), this.createAddStatDice(StatType.Strenth)] , auraUse:0, tpSpent:0},
-      {name:'Block', description:'Defense: if successful get half the damage', dice: [this.createStatDice(StatType.Strenth, 10)], auraUse:0, tpSpent:0},
-      {name:'Dodge', description:'Defense: if successful get no damage', dice: [this.createStatDice(StatType.Dexterity, 6)], auraUse:0, tpSpent:0}
+      {name:'Strike', description:'A simple hit enforced with Nen', dice: [this.createStatDice("Enhancer", 6)], damage:[this.createSimpleDice(1, 6), this.createAddStatDice("Strength")] , cost:0, tpSpent:0},
+      {name:'Block', description:'Defense: if successful get half the damage', dice: [this.createStatDice("Strength", 10)], cost:0, tpSpent:0},
+      {name:'Dodge', description:'Defense: if successful get no damage', dice: [this.createStatDice("Dexterity", 6)], cost:0, tpSpent:0}
     ]
   }
 
-  createStatDice(statType: StatType, dice: number) : Dice {
+  createStatDice(statType: string, dice: number) : Dice {
     return {
       type: NumberOfDiceType.Stat,
       statType: statType,
@@ -54,7 +53,7 @@ export class CharacterService {
     }
   }
 
-  createAddStatDice(statType: StatType)
+  createAddStatDice(statType: string)
   {
     return {
       type: NumberOfDiceType.AbsoluteStat,

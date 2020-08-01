@@ -1,0 +1,21 @@
+div.messages {
+    height: 100px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+div.message-list {
+    position: absolute;
+    bottom: 0;
+    width: 98%;
+    height: 100%;
+    padding: 0 1%;
+    overflow-y:scroll;
+}
+
+div.message-list > div > div {
+    height: 20px;
+}

@@ -4,7 +4,7 @@ export interface Skill {
     name: string,
     description: string,
     dice: Dice[],
-    auraUse: number,
+    cost: number,
     damage?: Dice[],
     tpSpent: number,
 }

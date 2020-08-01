@@ -7,13 +7,15 @@ import { CharacterComponent } from './character/character.component';
 import { FormsModule } from "@angular/forms";
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { StatsComponent } from './stats/stats.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterComponent,
     SkillListComponent,
-    StatsComponent
+    StatsComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
