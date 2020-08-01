@@ -1,0 +1,6 @@
+<h1>{{character.name | uppercase}}</h1>
+<div>
+    <label>Name: </label>
+    <input [(ngModel)]="character.name" placeholder="name" />
+    <app-skill-list [character]="character"></app-skill-list>
+</div>

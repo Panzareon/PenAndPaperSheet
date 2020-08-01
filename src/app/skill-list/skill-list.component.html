@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let skill of character.skills" (click)="selectSkill(skill)">
+        {{skill.name}} ({{skill.auraUse}})
+    </li>
+</ul>
