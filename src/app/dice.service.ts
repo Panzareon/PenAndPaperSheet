@@ -3,6 +3,7 @@ import { Character } from './character';
 import { Skill } from './skill';
 import { Dice, NumberOfDiceType } from "./dice";
 import { DiceResult } from './dice-result';
+import { StatType } from './stat-type';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,12 @@ export class DiceService {
     {
       for (let i = 0; i < this.getNumberOfDice(character, dice); i++) {
           var result = Math.floor(Math.random() * dice.dice) + 1;
-          a.push({number: result, isMax: result == dice.dice});
+          a.push({number: result, isMax: result == dice.dice, dice: dice.dice});
+      }
+
+      if (dice.type == NumberOfDiceType.AbsoluteStat)
+      {
+        a.push({number:character.stats[StatType[dice.statType]], isMax: false, dice: 0})
       }
     }
     return a;
@@ -32,7 +38,7 @@ export class DiceService {
       case NumberOfDiceType.Fixed:
         return dice.number;
       case NumberOfDiceType.Stat:
-        return character.stats[dice.statType];
+        return character.stats[StatType[dice.statType]];
       case NumberOfDiceType.AbsoluteStat:
         return 0;
     }

@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let stat of getStats()">
+        <label>{{stat}}: </label>
+        <input [(ngModel)]="character.stats[stat]">
+    </li>
+</ul>

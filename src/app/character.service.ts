@@ -22,14 +22,19 @@ export class CharacterService {
       skills: this.createDefaultSkills(),
       stats: [],
     };
+    for (let item in StatType) {
+      if (isNaN(Number(item))) {
+        character.stats[item] = 0;
+      }
+    }
     return character;
   }
 
   createDefaultSkills(): Skill[] {
     return [
-      {name:'Strike', dice: [this.createStatDice(StatType.Enhancer, 6)], damage:[this.createSimpleDice(1, 6), this.createAddStatDice(StatType.Strenth)] , auraUse:0},
-      {name:'Block', dice: [this.createStatDice(StatType.Strenth, 10)], auraUse:0},
-      {name:'Dodge', dice: [this.createStatDice(StatType.Dexterity, 6)], auraUse:0}
+      {name:'Strike', description:'A simple hit enforced with Nen', dice: [this.createStatDice(StatType.Enhancer, 6)], damage:[this.createSimpleDice(1, 6), this.createAddStatDice(StatType.Strenth)] , auraUse:0, tpSpent:0},
+      {name:'Block', description:'Defense: if successful get half the damage', dice: [this.createStatDice(StatType.Strenth, 10)], auraUse:0, tpSpent:0},
+      {name:'Dodge', description:'Defense: if successful get no damage', dice: [this.createStatDice(StatType.Dexterity, 6)], auraUse:0, tpSpent:0}
     ]
   }
 

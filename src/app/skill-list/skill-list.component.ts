@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { Skill } from '../skill';
+import { DiceService } from '../dice.service';
 
 @Component({
   selector: 'app-skill-list',
@@ -10,13 +11,13 @@ import { Skill } from '../skill';
 export class SkillListComponent implements OnInit {
 
   @Input() character: Character;
-  constructor() { }
+  constructor(private diceService: DiceService) { }
 
   ngOnInit(): void {
   }
 
 
   selectSkill(skill: Skill): void {
-
+    console.log(this.diceService.rollDiceOfSkill(this.character, skill));
   }
 }

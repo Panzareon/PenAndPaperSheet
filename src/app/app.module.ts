@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CharacterComponent } from './character/character.component';
 import { FormsModule } from "@angular/forms";
 import { SkillListComponent } from './skill-list/skill-list.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterComponent,
-    SkillListComponent
+    SkillListComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

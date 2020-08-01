@@ -2,7 +2,7 @@ import { Skill } from "./skill";
 import { StatType } from './stat-type';
 
 export interface Character {
-    stats : any[],
+    stats : any[] ,
     skills : Skill[],
     name : string,
 }
