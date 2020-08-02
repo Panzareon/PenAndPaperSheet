@@ -3,3 +3,10 @@
     <label>Name: </label>
     <input [(ngModel)]="character.name" placeholder="name" />
 </div>
+<div *ngFor="let value of getValues()">
+    <label>{{value}}: </label>
+    <input *ngIf="displayType(value) == 'Default'" [(ngModel)]="character.values[value]" placeholder="{{value}}" />
+    <div *ngIf="displayType(value) == 'LongText'" >
+        <textarea [(ngModel)]="character.values[value]" placeholder="{{value}}" ></textarea>
+    </div>
+</div>

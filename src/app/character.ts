@@ -1,8 +1,8 @@
 import { Skill } from "./skill";
-import { StatType } from './stat-type';
 
 export interface Character {
-    stats : any,
-    skills : Skill[],
     name : string,
+    stats : {[id:string] : number},
+    skills : Skill[],
+    values : {[id:string]: string},
 }

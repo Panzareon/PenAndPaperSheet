@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from "../character.service";
+import { RulesService } from '../rules.service';
 
 @Component({
   selector: 'app-character',
@@ -11,7 +12,7 @@ export class CharacterComponent implements OnInit {
 
   character: Character;
 
-  constructor(private characterService: CharacterService) { }
+  constructor(private characterService: CharacterService, private rulesService: RulesService) { }
 
   ngOnInit(): void {
     this.getCharacter();
@@ -19,5 +20,13 @@ export class CharacterComponent implements OnInit {
 
   getCharacter(): void {
     this.character = this.characterService.getCharacter();
+  }
+
+  getValues(): string[] {
+    return this.rulesService.rules.values.map(x => x.name);
+  }
+
+  displayType(value: string) {
+    return this.rulesService.getValue(value).type ?? "Default";
   }
 }

@@ -30,6 +30,7 @@ export class CharacterService {
 
     const character : Character = {
       name: "",
+      values: {},
       skills: this.createDefaultSkills(),
       stats: {},
     };
