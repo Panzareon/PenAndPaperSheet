@@ -8,6 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { StatsComponent } from './stats/stats.component';
 import { MessageComponent } from './message/message.component';
+import { ImportExportComponent } from './import-export/import-export.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MessageComponent } from './message/message.component';
     CharacterComponent,
     SkillListComponent,
     StatsComponent,
-    MessageComponent
+    MessageComponent,
+    ImportExportComponent
   ],
   imports: [
     BrowserModule,

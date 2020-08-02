@@ -1,5 +1,5 @@
 <div class="messages">
     <div class="message-list">
-        <div *ngFor="let message of messageService.messages" [innerHtml]="message"></div>
+        <div *ngFor="let message of messageService.messages.reverse()" [innerHtml]="message"></div>
     </div>
 </div>

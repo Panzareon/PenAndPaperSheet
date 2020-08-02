@@ -27,7 +27,7 @@ export class DiceService {
 
       if (dice.type == NumberOfDiceType.AbsoluteStat)
       {
-        a.push({number:character.stats[dice.statType], isMax: false, dice: 0})
+        a.push({number:Number(character.stats[dice.statType]), isMax: false, dice: 0})
       }
     }
     return a;

@@ -17,11 +17,15 @@ export class CharacterService {
     return this.character;
   }
 
+  loadCharacter(character: Character) {
+    this.character = character;
+  }
+
   createCharacter(name: string): Character {
     const character : Character = {
       name: name,
       skills: this.createDefaultSkills(),
-      stats: [],
+      stats: {},
     };
     for (let item of this.statsService.stats) {
       character.stats[item.name] = (item.dependsOn ? this.statsService.getStat(item.dependsOn).startvalue : item.startvalue) ?? 0;
