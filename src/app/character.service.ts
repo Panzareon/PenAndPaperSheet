@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, HostListener } from '@angular/core';
 import { Character } from './character';
 import { StatType } from './stat-type';
 import { Skill } from './skill';
 import { Dice, NumberOfDiceType } from './dice';
 import { StatsService } from './stats.service';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
-  character: Character = this.createCharacter('Initial Name');
+  character: Character = this.createCharacter();
 
   constructor(private statsService : StatsService) { }
 
@@ -21,9 +22,14 @@ export class CharacterService {
     this.character = character;
   }
 
-  createCharacter(name: string): Character {
+  createCharacter(): Character {
+    let storedCharacter = window.localStorage.getItem("character");
+    if (storedCharacter) {
+      return JSON.parse(storedCharacter);
+    }
+
     const character : Character = {
-      name: name,
+      name: "",
       skills: this.createDefaultSkills(),
       stats: {},
     };
@@ -31,6 +37,10 @@ export class CharacterService {
       character.stats[item.name] = (item.dependsOn ? this.statsService.getStat(item.dependsOn).startvalue : item.startvalue) ?? 0;
     }
     return character;
+  }
+
+  storeCharacter() {
+    window.localStorage.setItem("character", JSON.stringify(this.getCharacter()));
   }
 
   createDefaultSkills(): Skill[] {
