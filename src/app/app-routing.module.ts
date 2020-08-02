@@ -8,7 +8,7 @@ import { ImportExportComponent } from './import-export/import-export.component';
 const routes: Routes = [
   {path: 'character', component: CharacterComponent},
   {path: 'stats', component: StatsComponent},
-  {path: 'skills', component: SkillListComponent},
+  {path: 'skills/:skill', component: SkillListComponent},
   {path: 'import', component: ImportExportComponent}
 ];
 

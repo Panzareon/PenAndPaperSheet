@@ -1,0 +1,100 @@
+{
+	"name": "",
+	"skills": {
+		"Skills": [
+			{
+				"name": "Strike",
+				"description": "A simple hit enforced with Nen",
+				"dice": [
+					{
+						"type": 1,
+						"statType": "Enhancer",
+						"dice": 6
+					}
+				],
+				"damage": [
+					{
+						"type": 0,
+						"number": 1,
+						"dice": 6
+					},
+					{
+						"type": 2,
+						"statType": "Strength"
+					}
+				],
+				"cost": 0,
+				"tpSpent": 0
+			},
+			{
+				"name": "Block",
+				"description": "Defense: if successful get half the damage",
+				"dice": [
+					{
+						"type": 1,
+						"statType": "Strength",
+						"dice": 10
+					}
+				],
+				"cost": 0,
+				"tpSpent": 0
+			},
+			{
+				"name": "Dodge",
+				"description": "Defense: if successful get no damage",
+				"dice": [
+					{
+						"type": 1,
+						"statType": "Dexterity",
+						"dice": 6
+					}
+				],
+				"cost": 0,
+				"tpSpent": 0
+			}
+		],
+		"Items": [
+			{
+				"name": "Dagger",
+				"description": "A simple dagger",
+				"dice": [
+					{
+						"type": 1,
+						"statType": "Strength",
+						"dice": 6
+					}
+				],
+				"damage": [
+					{
+						"type": 0,
+						"number": 1,
+						"dice": 6
+					},
+					{
+						"type": 2,
+						"statType": "Strength"
+					}
+				],
+				"amount": 1
+			}
+		]
+	},
+	"stats": {
+		"Hp": 10,
+		"MaxHp": 10,
+		"Aura": 10,
+		"MaxAura": 10,
+		"Strength": 0,
+		"Speed": 0,
+		"Dexterity": 0,
+		"Sense": 0,
+		"Nen": 0,
+		"Manipulator": 0,
+		"Emitter": 0,
+		"Enhancer": 0,
+		"Transmuter": 0,
+		"Conjurer": 0,
+		"Specialist": 0
+	},
+	"values": []
+}

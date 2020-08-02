@@ -12,10 +12,6 @@ export class DiceService {
 
   constructor() { }
 
-  rollDiceOfSkill(character: Character, skill: Skill): DiceResult[]{
-    return this.rollDice(character, skill.dice);
-  }
-    
   rollDice(character: Character, diceArray: Dice[]): DiceResult[]{
     const a: DiceResult[] = [];
     for (let dice of diceArray)
@@ -69,6 +65,10 @@ export class DiceService {
   }
 
   getDiceDescription(diceList: Dice[], character?: Character) {
+    if (!diceList) {
+      return "";
+    }
+
     let text = "";
     for (let dice of diceList)
     {

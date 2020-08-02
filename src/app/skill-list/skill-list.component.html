@@ -1,18 +1,13 @@
+<h3>{{getName()}}</h3>
+
 <table>
     <tr>
-        <th>Name</th>
-        <th>Dice</th>
-        <th>Damage</th>
-        <th>Cost</th>
-        <th>Description</th>
-        <th>TP Cost</th>
+        <th *ngFor="let column of skillList.availableColumns">{{column.caption}}</th>
     </tr>
-    <tr *ngFor="let skill of character.skills">
-        <td>{{skill.name}}</td>
-        <td (click)="rollSkill(skill)">{{getDiceDescription(skill)}}</td>
-        <td (click)="rollSkillDamage(skill)">{{getDamageDiceDescription(skill)}}</td>
-        <td>{{skill.cost}}</td>
-        <td>{{skill.description}}</td>
-        <td>{{skill.tpSpent}}</td>
+    <tr *ngFor="let skill of character.skills[getName()]">
+        <ng-container *ngFor="let column of skillList.availableColumns">
+            <td *ngIf="column.type == 'text'">{{skill[column.name]}}</td>
+            <td *ngIf="column.type == 'dice'" (click)="rollSkill(skill, column.name)">{{getDiceDescription(skill, column.name)}}</td>
+        </ng-container>
     </tr>
 </table>

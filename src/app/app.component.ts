@@ -10,7 +10,7 @@ import { RulesService } from './rules.service';
 export class AppComponent {
   title = 'HxH Pen and Paper Character';
 
-  constructor(private characterService: CharacterService, private rulesService: RulesService) {
+  constructor(private characterService: CharacterService, public rulesService: RulesService) {
   }
 
   @HostListener('window:beforeunload', ['$event'])
