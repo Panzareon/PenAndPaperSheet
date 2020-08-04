@@ -47,4 +47,8 @@ export class SkillListComponent implements OnInit {
   showColumn(columnName: string): boolean {
     return this.skillList.availableColumns.find(x => x.name == columnName) != undefined;
   }
+
+  getAvailableColumnNames() {
+    return this.skillList.availableColumns.map(x => x.name);
+  }
 }

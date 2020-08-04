@@ -9,6 +9,8 @@ import { SkillListComponent } from './skill-list/skill-list.component';
 import { StatsComponent } from './stats/stats.component';
 import { MessageComponent } from './message/message.component';
 import { ImportExportComponent } from './import-export/import-export.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table'
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ImportExportComponent } from './import-export/import-export.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
