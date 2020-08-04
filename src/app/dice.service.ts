@@ -1,32 +1,53 @@
 import { Injectable } from '@angular/core';
 import { Character } from './character';
-import { Skill } from './skill';
 import { Dice, NumberOfDiceType } from "./dice";
 import { DiceResult } from './dice-result';
-import { StatType } from './stat-type';
+import { DiceModifier } from './dice-modifier';
+import { MatDialog } from "@angular/material/dialog";
+import { ModifyDiceDialogComponent } from './modify-dice-dialog/modify-dice-dialog.component';
+import { Constants } from "./constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiceService {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
-  rollDice(character: Character, diceArray: Dice[]): DiceResult[]{
-    const a: DiceResult[] = [];
-    for (let dice of diceArray)
-    {
-      for (let i = 0; i < this.getNumberOfDice(character, dice); i++) {
-          var result = Math.floor(Math.random() * dice.dice) + 1;
-          a.push({number: result, isMax: result == dice.dice, dice: dice.dice});
-      }
-
-      if (dice.type == NumberOfDiceType.AbsoluteStat)
+  rollDice(character: Character, diceArray: Dice[], diceModifier: DiceModifier[], callbackFunction: { (result: DiceResult[]): void; }): void{
+    if (diceModifier && diceModifier.find(x => x.type == Constants.bonusDice)) {
+      const dialogRef = this.dialog.open(ModifyDiceDialogComponent,
       {
-        a.push({number:Number(character.stats[dice.statType]), isMax: false, dice: 0})
-      }
+        data: {character: character, diceArray: diceArray.slice(), diceModifier: diceModifier}
+      });
+
+      dialogRef.afterClosed().subscribe(result =>
+      {
+        if (!result) {
+          return;
+        }
+
+        diceModifier = diceModifier.filter(x => x.type != Constants.bonusDice);
+        this.rollDice(character, result, diceModifier, callbackFunction);
+      })
     }
-    return a;
+    else {
+      const a: DiceResult[] = [];
+      for (let dice of diceArray)
+      {
+        for (let i = 0; i < this.getNumberOfDice(character, dice); i++) {
+            var result = Math.floor(Math.random() * dice.dice) + 1;
+            a.push({number: result, isMax: result == dice.dice, dice: dice.dice});
+        }
+  
+        if (dice.type == NumberOfDiceType.AbsoluteStat)
+        {
+          a.push({number:Number(character.stats[dice.statType]), isMax: false, dice: 0})
+        }
+      }
+      
+      callbackFunction(a);
+    }
   }
 
   toText(result: DiceResult[]) {

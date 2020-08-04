@@ -7,7 +7,7 @@
             <td mat-cell *matCellDef="let row">{{row[column.name]}}</td>
         </ng-container>
         <ng-container  *ngIf="column.type == 'dice'">
-            <td mat-cell *matCellDef="let row" (click)="rollSkill(row, column.name)">{{getDiceDescription(row, column.name)}}</td>
+            <td mat-cell *matCellDef="let row" (click)="rollSkill(row, column)">{{getDiceDescription(row, column.name)}}</td>
         </ng-container>
     </ng-container>
 

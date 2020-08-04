@@ -10,7 +10,9 @@ import { StatsComponent } from './stats/stats.component';
 import { MessageComponent } from './message/message.component';
 import { ImportExportComponent } from './import-export/import-export.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
+import { ModifyDiceDialogComponent } from './modify-dice-dialog/modify-dice-dialog.component'
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -19,16 +21,21 @@ import { MatTableModule } from '@angular/material/table'
     SkillListComponent,
     StatsComponent,
     MessageComponent,
-    ImportExportComponent
+    ImportExportComponent,
+    ModifyDiceDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModifyDiceDialogComponent,
+  ]
 })
 export class AppModule { }

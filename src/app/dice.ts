@@ -1,7 +1,3 @@
-import { Character } from "./character";
-import { DiceResult } from "./dice-result";
-import { StatType } from "./stat-type";
-
 export enum NumberOfDiceType {
     Fixed,
     Stat,

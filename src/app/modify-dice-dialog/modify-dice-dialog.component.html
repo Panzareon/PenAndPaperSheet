@@ -1,0 +1,9 @@
+<h3 *ngIf="bonusDice">Add Dice</h3>
+<div *ngFor="let modifier of bonusDice">
+    <input [(ngModel)]="modifier.number" />D
+    <input *ngIf="getDice(modifier.modifier) === undefined" [(ngModel)]="modifier.dice" />
+    <ng-container *ngIf="getDice(modifier.modifier) !== undefined">{{modifier.dice}}</ng-container>
+</div>
+
+<button (click)="submit()">Ok</button>
+<button (click)="cancel()">Cancel</button>
