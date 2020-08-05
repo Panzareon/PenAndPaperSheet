@@ -10,4 +10,5 @@ export interface SkillListColumn {
     type: string,
     caption: string,
     diceModifier?: DiceModifier[],
+    stat?: string,
 }

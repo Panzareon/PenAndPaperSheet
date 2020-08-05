@@ -1,3 +1,7 @@
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
     padding: 0 12px;
 }
+
+input {
+    width: 40px;
+}

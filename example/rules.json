@@ -139,7 +139,7 @@
 				{"name": "name", "type": "text", "caption": "Name"},
 				{"name": "description", "type": "text", "caption": "Description"},
 				{"name": "dice", "type": "dice", "caption": "Dice", "diceModifier":[{"type":"bonusDice", "dice": "default6"}]},
-				{"name": "cost", "type": "text", "caption": "Aura Cost"},
+				{"name": "cost", "type": "statCost", "caption": "Aura Cost", "stat":"Aura"},
 				{"name": "damage", "type": "dice", "caption": "Damage", "diceModifier":[{"type":"bonusDice", "dice":"default6"}]},
 				{"name": "tpSpent", "type": "text", "caption": "Tp Spent"}
 			]
@@ -149,7 +149,7 @@
 			"availableColumns": [
 				{"name": "name", "type": "text", "caption": "Name"},
 				{"name": "description", "type": "text", "caption": "Description"},
-				{"name": "amount", "type": "text", "caption": "Amount"},
+				{"name": "amount", "type": "amount", "caption": "Amount"},
 				{"name": "dice", "type": "dice", "caption": "Dice", "diceModifier":[{"type":"bonusDice", "dice":"default6"}]},
 				{"name": "damage", "type": "dice", "caption": "Damage", "diceModifier":[{"type":"bonusDice", "dice":"default6"}]}
 			]

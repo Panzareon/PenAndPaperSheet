@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character';
 import { DiceService } from '../dice.service';
 import { CharacterService } from '../character.service';
-import { NumberOfDiceType } from '../dice';
+import { NumberOfDiceType, Dice } from '../dice';
 import { MessageService } from '../message.service';
 import { RulesService } from '../rules.service';
 import { SkillList, SkillListColumn } from '../skill-list';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Skill } from "../skill";
 
 @Component({
   selector: 'app-skill-list',
@@ -36,11 +37,17 @@ export class SkillListComponent implements OnInit {
     return this.skillList.name;
   }
 
-  rollSkill(skill: [], column: SkillListColumn): void {
-    this.diceService.rollDice(this.character, skill[column.name], column.diceModifier, diceResult =>
+  rollSkill(skill: Skill, column: SkillListColumn): void {
+    let dice = skill[column.name] as Dice[];
+    this.diceService.rollDice(this.character,dice , column.diceModifier, diceResult =>
       {
         this.messageService.add(this.diceService.toText(diceResult));
       })
+  }
+
+  statCost(skill: Skill, column: SkillListColumn): void {
+    let cost = skill[column.name] as number;
+    this.character.stats[column.stat] -= cost;
   }
 
   getDiceDescription(skill: [], columnName: string) : string {
