@@ -59,6 +59,8 @@ export class SkillListComponent implements OnInit {
   }
 
   getAvailableColumnNames() {
-    return this.skillList.availableColumns.map(x => x.name);
+    const columns = this.skillList.availableColumns.map(x => "col" + x.name);
+    columns.push("actions");
+    return columns;
   }
 }

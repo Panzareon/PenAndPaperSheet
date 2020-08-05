@@ -1,12 +1,12 @@
 <h1>{{character.name | uppercase}}</h1>
-<div>
-    <label>Name: </label>
-    <input [(ngModel)]="character.name" placeholder="name" />
-</div>
-<div *ngFor="let value of getValues()">
-    <label>{{value}}: </label>
-    <input *ngIf="displayType(value) == 'Default'" [(ngModel)]="character.values[value]" placeholder="{{value}}" />
+<mat-form-field>
+    <mat-label>Name: </mat-label>
+    <input matInput [(ngModel)]="character.name" />
+</mat-form-field>
+<mat-form-field *ngFor="let value of getValues()">
+    <mat-label>{{value}}: </mat-label>
+    <input matInput *ngIf="displayType(value) == 'Default'" [(ngModel)]="character.values[value]" />
     <div *ngIf="displayType(value) == 'LongText'" >
-        <textarea [(ngModel)]="character.values[value]" placeholder="{{value}}" ></textarea>
+        <textarea matInput [(ngModel)]="character.values[value]" ></textarea>
     </div>
-</div>
+</mat-form-field>

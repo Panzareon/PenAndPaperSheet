@@ -3,7 +3,9 @@
     <br *ngIf="newGroup(stat)">
     <br *ngIf="addNewline(stat)">
     <label [ngClass]="{'main-label' : addNewline(stat)}">{{getLabel(stat)}}</label>
-    <input *ngIf="!isCalculated(stat)" [(ngModel)]="character.stats[stat]">
+    <mat-form-field *ngIf="!isCalculated(stat)">
+        <input matInput type="number" [(ngModel)]="character.stats[stat]">
+    </mat-form-field>
     <ng-container *ngIf="isCalculated(stat)">{{statValue(stat)}}</ng-container>
     <span *ngIf="canUpgrade(stat)">
         <button (click)="upgradeStat(stat)">+</button>
