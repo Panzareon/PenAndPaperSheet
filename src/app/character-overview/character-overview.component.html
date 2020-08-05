@@ -1,0 +1,8 @@
+<div class="wrapper">
+    {{characterService.getCharacter().name | uppercase}}
+    <span class="stat" *ngFor="let stat of getStats()">
+        <br *ngIf="newGroup(stat)">
+        <br *ngIf="addNewline(stat)">
+        {{getLabel(stat)}}{{getStatValue(stat)}}
+    </span>
+</div>

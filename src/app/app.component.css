@@ -1,0 +1,9 @@
+app-character-overview {
+    width: 10%;
+    float: left;
+}
+
+div.main {
+    width: 90%;
+    float: left;
+}

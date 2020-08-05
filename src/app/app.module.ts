@@ -15,6 +15,7 @@ import { ModifyDiceDialogComponent } from './modify-dice-dialog/modify-dice-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { CharacterOverviewComponent } from './character-overview/character-overview.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     MessageComponent,
     ImportExportComponent,
     ModifyDiceDialogComponent,
+    CharacterOverviewComponent,
   ],
   imports: [
     BrowserModule,
