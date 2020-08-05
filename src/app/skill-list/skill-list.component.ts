@@ -50,8 +50,8 @@ export class SkillListComponent implements OnInit {
     this.character.stats[column.stat] -= cost;
   }
 
-  getDiceDescription(skill: [], columnName: string) : string {
-    return this.diceService.getDiceDescription(skill[columnName], this.character);
+  getDiceDescription(skill: Skill, columnName: string) : string {
+    return this.diceService.getDiceDescription(skill[columnName] as Dice[], this.character);
   }
 
   showColumn(columnName: string): boolean {

@@ -8,8 +8,11 @@ import { RulesService } from "./rules.service";
 export class StatsService {
   stats : StatType[];
 
-  constructor(rulesService: RulesService) {
-    this.stats = rulesService.rules.stats;
+  constructor(private rulesService: RulesService) {
+    if (this.rulesService.rules) {
+      this.loadStats();
+    }
+    this.rulesService.onRulesChanged(() => this.loadStats())
   }
 
   getStat(name: string) : StatType {
@@ -27,5 +30,9 @@ export class StatsService {
 
   private getStatCostInternal(stat: StatType, value: number) {
     return Math.floor(value * (value  + 1) * stat.costMultiplier/2);
+  }
+
+  private loadStats() {
+    this.stats = this.rulesService.rules.stats;
   }
 }

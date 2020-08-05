@@ -8,15 +8,18 @@ import { CharacterValue } from './character-value';
 export class RulesService {
   rules : Rules;
 
+  rulesChanged : CallableFunction[] = [];
+
   constructor() {
     let storedRules = window.localStorage.getItem("rules");
-    if (storedRules) {
+    if (storedRules !== "undefined") {
       this.rules = JSON.parse(storedRules);
     }
-   }
+  }
 
   loadRules(newRules: Rules) {
     this.rules = newRules;
+    this.notifyRulesChanged();
   }
 
   storeRules() {
@@ -24,6 +27,18 @@ export class RulesService {
   }
 
   getValue(name: string) : CharacterValue {
-    return this.rules.values.find(x => x.name == name);
+    if (this.rules) {
+      return this.rules.values.find(x => x.name == name);
+    }
+  }
+  
+  onRulesChanged(callableFunction: CallableFunction) {
+    this.rulesChanged.push(callableFunction);
+  }
+
+  notifyRulesChanged() {
+    for (let callableFunction of this.rulesChanged) {
+      callableFunction();
+    }
   }
 }
