@@ -42,6 +42,14 @@ export class StatsComponent implements OnInit {
     return this.statsService.getStat(stat).canUpgrade;
   }
 
+  isCalculated(stat: string) : boolean {
+    return this.statsService.getStat(stat).calculate !== undefined;
+  }
+
+  statValue(stat: string) : number {
+    return this.statsService.getStatValue(this.character, stat);
+  }
+
   upgradeStat(stat: string) {
     if (this.canUpgrade(stat))
     {
@@ -50,6 +58,6 @@ export class StatsComponent implements OnInit {
   }
 
   statCost(stat: string) {
-    return this.statsService.getStatCost(stat, Number(this.character.stats[stat]));
+    return this.statsService.getStatCost(stat, this.character.stats[stat]);
   }
 }

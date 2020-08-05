@@ -80,6 +80,7 @@
 		]
 	},
 	"stats": {
+		"MaxTp": 60,
 		"Hp": 10,
 		"MaxHp": 10,
 		"Aura": 10,

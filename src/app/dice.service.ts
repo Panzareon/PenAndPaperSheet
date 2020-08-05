@@ -6,13 +6,14 @@ import { DiceModifier } from './dice-modifier';
 import { MatDialog } from "@angular/material/dialog";
 import { ModifyDiceDialogComponent } from './modify-dice-dialog/modify-dice-dialog.component';
 import { Constants } from "./constants";
+import { StatsService } from './stats.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiceService {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private statsService : StatsService) { }
 
   rollDice(character: Character, diceArray: Dice[], diceModifier: DiceModifier[], callbackFunction: { (result: DiceResult[]): void; }): void{
     if (diceModifier && diceModifier.find(x => x.type == Constants.bonusDice)) {
@@ -42,7 +43,7 @@ export class DiceService {
   
         if (dice.type == NumberOfDiceType.AbsoluteStat)
         {
-          a.push({number:Number(character.stats[dice.statType]), isMax: false, dice: 0})
+          a.push({number:Number(this.statsService.getStatValue(character, dice.statType)), isMax: false, dice: 0})
         }
       }
       
@@ -79,7 +80,7 @@ export class DiceService {
       case NumberOfDiceType.Fixed:
         return dice.number;
       case NumberOfDiceType.Stat:
-        return character.stats[dice.statType];
+        return this.statsService.getStatValue(character, dice.statType);
       case NumberOfDiceType.AbsoluteStat:
         return 0;
     }
@@ -113,7 +114,7 @@ export class DiceService {
 
   getStatDescription(stat: string, character?: Character) {
     if (character) {
-      return "(" + stat + ":" + character.stats[stat] + ")";
+      return "(" + stat + ":" + this.statsService.getStatValue(character, stat) + ")";
     }
 
     return "(" + stat + ")";

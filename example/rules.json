@@ -10,6 +10,37 @@
 	],
 	"stats": [
 		{
+			"name": "Tp",
+			"newGroup": true,
+			"newLine": true,
+			"label": "Tp:",
+			"canUpgrade": false,
+			"dependsOn": "MaxTp",
+			"calculate": [
+				{
+					"action": "add",
+					"statCost": {
+						"all": true
+					}
+				},
+				{
+					"action": "add",
+					"skill": {
+						"skillList": "Skills",
+						"value": "tpSpent"
+					}
+				}
+			]
+		},
+		{
+			"name": "MaxTp",
+			"newGroup": false,
+			"newLine": false,
+			"label": "/",
+			"canUpgrade": false,
+			"startvalue": 60
+		},
+		{
 			"name": "Hp",
 			"newGroup": true,
 			"newLine": true,
@@ -136,22 +167,91 @@
 		{
 			"name": "Skills",
 			"availableColumns": [
-				{"name": "name", "type": "text", "caption": "Name"},
-				{"name": "description", "type": "text", "caption": "Description"},
-				{"name": "dice", "type": "dice", "caption": "Dice", "diceModifier":[{"type":"bonusDice", "dice": "default6"}]},
-				{"name": "cost", "type": "statCost", "caption": "Aura Cost", "stat":"Aura"},
-				{"name": "damage", "type": "dice", "caption": "Damage", "diceModifier":[{"type":"bonusDice", "dice":"default6"}]},
-				{"name": "tpSpent", "type": "text", "caption": "Tp Spent"}
+				{
+					"name": "name",
+					"type": "text",
+					"caption": "Name"
+				},
+				{
+					"name": "description",
+					"type": "text",
+					"caption": "Description"
+				},
+				{
+					"name": "dice",
+					"type": "dice",
+					"caption": "Dice",
+					"diceModifier": [
+						{
+							"type": "bonusDice",
+							"dice": "default6"
+						}
+					]
+				},
+				{
+					"name": "cost",
+					"type": "statCost",
+					"caption": "Aura Cost",
+					"stat": "Aura"
+				},
+				{
+					"name": "damage",
+					"type": "dice",
+					"caption": "Damage",
+					"diceModifier": [
+						{
+							"type": "bonusDice",
+							"dice": "default6"
+						}
+					]
+				},
+				{
+					"name": "tpSpent",
+					"type": "text",
+					"caption": "Tp Spent"
+				}
 			]
 		},
 		{
 			"name": "Items",
 			"availableColumns": [
-				{"name": "name", "type": "text", "caption": "Name"},
-				{"name": "description", "type": "text", "caption": "Description"},
-				{"name": "amount", "type": "amount", "caption": "Amount"},
-				{"name": "dice", "type": "dice", "caption": "Dice", "diceModifier":[{"type":"bonusDice", "dice":"default6"}]},
-				{"name": "damage", "type": "dice", "caption": "Damage", "diceModifier":[{"type":"bonusDice", "dice":"default6"}]}
+				{
+					"name": "name",
+					"type": "text",
+					"caption": "Name"
+				},
+				{
+					"name": "description",
+					"type": "text",
+					"caption": "Description"
+				},
+				{
+					"name": "amount",
+					"type": "amount",
+					"caption": "Amount"
+				},
+				{
+					"name": "dice",
+					"type": "dice",
+					"caption": "Dice",
+					"diceModifier": [
+						{
+							"type": "bonusDice",
+							"dice": "default6"
+						}
+					]
+				},
+				{
+					"name": "damage",
+					"type": "dice",
+					"caption": "Damage",
+					"diceModifier": [
+						{
+							"type": "bonusDice",
+							"dice": "default6"
+						}
+					]
+				}
 			]
 		}
 	]
