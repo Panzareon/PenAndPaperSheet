@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Character } from '../character';
 import { CharacterService } from "../character.service";
 import { RulesService } from '../rules.service';
+import { CharacterValue } from '../character-value';
 
 @Component({
   selector: 'app-character',
@@ -28,5 +29,9 @@ export class CharacterComponent implements OnInit {
 
   displayType(value: string) {
     return this.rulesService.getValue(value).type ?? "Default";
+  }
+
+  characterValue(value: string): CharacterValue {
+    return this.rulesService.getValue(value);
   }
 }

@@ -1,6 +1,18 @@
 {
 	"values": [
 		{
+			"name": "Main Type",
+			"type": "Select",
+			"values" : [
+				"Manipulator",
+				"Emitter",
+				"Enhancer",
+				"Transmuter",
+				"Conjurer",
+				"Specialist"
+			]
+		},
+		{
 			"name": "Age"
 		},
 		{

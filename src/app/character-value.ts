@@ -6,4 +6,5 @@ export enum CharacterValueType {
 export interface CharacterValue {
     name : string,
     type? : string,
+    values? : string[],
 }

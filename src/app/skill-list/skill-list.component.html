@@ -29,3 +29,5 @@
   <tr mat-header-row *matHeaderRowDef="getAvailableColumnNames()"></tr>
   <tr mat-row *matRowDef="let row; columns: getAvailableColumnNames()"></tr>
 </table>
+
+<button mat-raised-button (click)="addSkill()">Add</button>
