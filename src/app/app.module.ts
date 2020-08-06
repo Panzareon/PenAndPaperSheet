@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CharacterOverviewComponent } from './character-overview/character-overview.component';
+import { EditSkillComponent } from './edit-skill/edit-skill.component';
+import { EditDiceDialogComponent } from './edit-dice-dialog/edit-dice-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { CharacterOverviewComponent } from './character-overview/character-overv
     ImportExportComponent,
     ModifyDiceDialogComponent,
     CharacterOverviewComponent,
+    EditSkillComponent,
+    EditDiceDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import { CharacterOverviewComponent } from './character-overview/character-overv
   bootstrap: [AppComponent],
   entryComponents: [
     ModifyDiceDialogComponent,
+    EditDiceDialogComponent,
   ]
 })
 export class AppModule { }

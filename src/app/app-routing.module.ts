@@ -4,12 +4,14 @@ import { CharacterComponent } from './character/character.component';
 import { StatsComponent } from './stats/stats.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { ImportExportComponent } from './import-export/import-export.component';
+import { EditSkillComponent } from './edit-skill/edit-skill.component';
 
 const routes: Routes = [
   {path: 'character', component: CharacterComponent},
   {path: 'stats', component: StatsComponent},
-  {path: 'skills/:skill', component: SkillListComponent},
-  {path: 'import', component: ImportExportComponent}
+  {path: 'skills/:skill-list', component: SkillListComponent},
+  {path: 'import', component: ImportExportComponent},
+  {path: 'edit-skill/:skill-list/:skill', component: EditSkillComponent},
 ];
 
 @NgModule({

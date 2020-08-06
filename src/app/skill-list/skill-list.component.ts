@@ -29,7 +29,7 @@ export class SkillListComponent implements OnInit {
 
   ngOnInit(): void {
     this.character = this.characterService.getCharacter();
-    const skillListName = this.route.snapshot.paramMap.get('skill');
+    const skillListName = this.route.snapshot.paramMap.get('skill-list');
     this.skillList = this.rulesService.rules.skillLists.find(x => x.name == skillListName);
   }
 

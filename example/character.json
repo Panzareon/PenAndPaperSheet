@@ -3,6 +3,7 @@
 	"skills": {
 		"Skills": [
 			{
+				"id": 1,
 				"name": "Strike",
 				"description": "A simple hit enforced with Nen",
 				"dice": [
@@ -27,6 +28,7 @@
 				"tpSpent": 0
 			},
 			{
+				"id": 2,
 				"name": "Block",
 				"description": "Defense: if successful get half the damage",
 				"dice": [
@@ -40,6 +42,7 @@
 				"tpSpent": 0
 			},
 			{
+				"id": 3,
 				"name": "Dodge",
 				"description": "Defense: if successful get no damage",
 				"dice": [
@@ -55,6 +58,7 @@
 		],
 		"Items": [
 			{
+				"id": 1,
 				"name": "Dagger",
 				"description": "A simple dagger",
 				"dice": [

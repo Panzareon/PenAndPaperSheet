@@ -1,0 +1,13 @@
+
+<div class="stat" *ngFor="let column of skillList.availableColumns">
+    <mat-form-field *ngIf="column.type != 'dice'">
+        <mat-label>{{column.caption}}</mat-label>
+        <input matInput *ngIf="column.type == 'text'" type="text" [(ngModel)]="skill[column.name]">
+        <input matInput *ngIf="column.type == 'statCost'" type="number" [(ngModel)]="skill[column.name]">
+        <input matInput *ngIf="column.type == 'amount'" type="number" [(ngModel)]="skill[column.name]">
+    </mat-form-field>
+    <div *ngIf="column.type == 'dice'">
+        {{column.caption}}: <br>
+        <button mat-raised-button (click)="editDice(column.name)">{{getDiceDescription(column.name)}}</button>
+    </div>
+</div>
