@@ -58,6 +58,6 @@ export class StatsComponent implements OnInit {
   }
 
   statCost(stat: string) {
-    return this.statsService.getStatCost(stat, this.character.stats[stat]);
+    return this.statsService.getStatCost(stat, this.character.stats[stat], this.character);
   }
 }

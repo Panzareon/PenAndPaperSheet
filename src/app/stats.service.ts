@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { StatType, CalculateStep } from "./stat-type";
+import { StatType, CalculateStep, Calculation, Compare } from "./stat-type";
 import { RulesService } from "./rules.service";
 import { Character } from './character';
 import { CharacterComponent } from './character/character.component';
+import { CharacterValue } from './character-value';
 
 @Injectable({
   providedIn: 'root'
@@ -58,26 +59,38 @@ export class StatsService {
     }
     if (step.statCost) {
       for (let stat of this.stats.filter(x => x.canUpgrade)) {
-        a.push(this.getStatCost(stat.name, character.stats[stat.name]));
+        a.push(this.getStatCost(stat.name, character.stats[stat.name], character));
       }
     }
     return a;
   }
 
-  getStatCost(statName: string, value: number) {
+  getStatCost(statName: string, value: number, character: Character) {
     let stat = this.getStat(statName);
     if (stat.startvalue) {
-      return this.getStatCostInternal(stat, Number(value)) - this.getStatCostInternal(stat, stat.startvalue);
+      return this.getStatCostInternal(stat, Number(value), character) - this.getStatCostInternal(stat, stat.startvalue, character);
     }
     
-    return this.getStatCostInternal(stat, Number(value))
+    return this.getStatCostInternal(stat, Number(value), character)
   }
 
-  private getStatCostInternal(stat: StatType, value: number) {
-    return Math.floor(value * (value  + 1) * stat.costMultiplier/2);
+  private getStatCostInternal(stat: StatType, value: number, character: Character) : number {
+    return Math.floor(value * (value  + 1) * this.getStatConstMultiplier(stat.costMultiplier, character)/2);
+  }
+
+  private getStatConstMultiplier(costMultiplier: number | Calculation, character: Character) : number {
+    if (typeof costMultiplier != "number") {
+      return this.evaluate(costMultiplier.check, character) ? costMultiplier.true : costMultiplier.false;
+    }
+
+    return costMultiplier as number;
   }
 
   private loadStats() {
     this.stats = this.rulesService.rules.stats;
+  }
+
+  private evaluate(check: Compare, character: Character) : boolean {
+    return character.values[check.compareValue] == check.compareWith;
   }
 }

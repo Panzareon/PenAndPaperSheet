@@ -3,7 +3,7 @@
 		{
 			"name": "Main Type",
 			"type": "Select",
-			"values" : [
+			"values": [
 				"Manipulator",
 				"Emitter",
 				"Enhancer",
@@ -132,7 +132,14 @@
 			"newLine": true,
 			"label": "Manipulator:",
 			"canUpgrade": true,
-			"costMultiplier": 3
+			"costMultiplier": {
+				"check": {
+					"compareValue": "Main Type",
+					"compareWith": "Manipulator"
+				},
+				"true": 2,
+				"false": 3
+			}
 		},
 		{
 			"name": "Emitter",
@@ -140,7 +147,14 @@
 			"newLine": true,
 			"label": "Emitter:",
 			"canUpgrade": true,
-			"costMultiplier": 3
+			"costMultiplier": {
+				"check": {
+					"compareValue": "Main Type",
+					"compareWith": "Emitter"
+				},
+				"true": 2,
+				"false": 3
+			}
 		},
 		{
 			"name": "Enhancer",
@@ -148,7 +162,14 @@
 			"newLine": true,
 			"label": "Enhancer:",
 			"canUpgrade": true,
-			"costMultiplier": 3
+			"costMultiplier": {
+				"check": {
+					"compareValue": "Main Type",
+					"compareWith": "Enhancer"
+				},
+				"true": 2,
+				"false": 3
+			}
 		},
 		{
 			"name": "Transmuter",
@@ -156,7 +177,14 @@
 			"newLine": true,
 			"label": "Transmuter:",
 			"canUpgrade": true,
-			"costMultiplier": 3
+			"costMultiplier": {
+				"check": {
+					"compareValue": "Main Type",
+					"compareWith": "Transmuter"
+				},
+				"true": 2,
+				"false": 3
+			}
 		},
 		{
 			"name": "Conjurer",
@@ -164,7 +192,14 @@
 			"newLine": true,
 			"label": "Conjurer:",
 			"canUpgrade": true,
-			"costMultiplier": 3
+			"costMultiplier": {
+				"check": {
+					"compareValue": "Main Type",
+					"compareWith": "Conjurer"
+				},
+				"true": 2,
+				"false": 3
+			}
 		},
 		{
 			"name": "Specialist",
@@ -172,7 +207,14 @@
 			"newLine": true,
 			"label": "Specialist:",
 			"canUpgrade": true,
-			"costMultiplier": 3
+			"costMultiplier": {
+				"check": {
+					"compareValue": "Main Type",
+					"compareWith": "Specialist"
+				},
+				"true": 2,
+				"false": 3
+			}
 		}
 	],
 	"skillLists": [
