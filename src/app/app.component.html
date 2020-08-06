@@ -8,5 +8,5 @@
     </nav>
     <router-outlet></router-outlet>
 </div>
-<app-character-overview></app-character-overview>
+<app-character-overview *ngIf="router.url != '/import'"></app-character-overview>
 <app-message></app-message>
