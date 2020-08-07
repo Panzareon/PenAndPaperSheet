@@ -5,6 +5,11 @@ export class NumberOfDiceType {
      * The value of the stat, instead of dice.
      */
     public static readonly AbsoluteStat = "AbsoluteStat";
+
+    /**
+     * A constant number.
+     */
+    public static readonly Constant = "Constant";
 }
 
 export interface Dice {

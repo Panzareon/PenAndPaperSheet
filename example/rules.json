@@ -67,7 +67,7 @@
 			"label": "/",
 			"canUpgrade": true,
 			"costMultiplier": 0.1,
-			"startvalue": 10
+			"startvalue": 20
 		},
 		{
 			"name": "Aura",

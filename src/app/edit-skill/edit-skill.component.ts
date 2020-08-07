@@ -39,6 +39,10 @@ export class EditSkillComponent implements OnInit {
       });
   }
 
+  valueEmpty(column: string) : boolean {
+    return this.skill[column] === undefined || this.skill[column] === null || this.skill[column] == "";
+  }
+
   getDiceDescription(column: string) {
     return this.diceService.getDiceDescription(this.skill[column] as Dice[])
   }

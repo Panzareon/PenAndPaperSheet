@@ -41,9 +41,12 @@ export class DiceService {
             a.push({number: result, isMax: result == dice.dice, dice: dice.dice});
         }
   
-        if (dice.type == NumberOfDiceType.AbsoluteStat)
-        {
+        if (dice.type == NumberOfDiceType.AbsoluteStat) {
           a.push({number:Number(this.statsService.getStatValue(character, dice.statType)), isMax: false, dice: 0})
+        }
+
+        if (dice.type == NumberOfDiceType.Constant) {
+          a.push({number: dice.number, isMax: false, dice:0});
         }
       }
       
@@ -82,6 +85,7 @@ export class DiceService {
       case NumberOfDiceType.Stat:
         return this.statsService.getStatValue(character, dice.statType);
       case NumberOfDiceType.AbsoluteStat:
+      case NumberOfDiceType.Constant:
         return 0;
     }
   }
@@ -106,6 +110,9 @@ export class DiceService {
           break;
         case NumberOfDiceType.Stat:
           text = text + this.getStatDescription(dice.statType, character) + "D" + dice.dice;
+          break;
+        case NumberOfDiceType.Constant:
+          text = text + dice.number;
           break;
       }
     }

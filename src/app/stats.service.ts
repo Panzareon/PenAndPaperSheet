@@ -95,7 +95,7 @@ export class StatsService {
     const a = [];
     if (step.skill) {
       for (let skill of character.skills[step.skill.skillList]) {
-        	a.push(skill[step.skill.value]);
+        	a.push(Number(skill[step.skill.value]));
       }
     }
     if (step.statCost) {
@@ -104,13 +104,13 @@ export class StatsService {
       }
     }
     if (step.statBase) {
-      a.push(character.stats[step.statBase]);
+      a.push(Number(character.stats[step.statBase]));
     }
     if (step.constant !== undefined && step.constant !== null) {
-      a.push(step.constant);
+      a.push(Number(step.constant));
     }
     if (step.condition) {
-      a.push(this.evaluate(step.condition.check, character) ? step.condition.true : step.condition.false);
+      a.push(this.evaluate(step.condition.check, character) ? Number(step.condition.true) : Number(step.condition.false));
     }
     return a;
   }

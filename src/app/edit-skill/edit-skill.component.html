@@ -8,6 +8,7 @@
     </mat-form-field>
     <div *ngIf="column.type == 'dice'">
         {{column.caption}}: <br>
-        <button mat-raised-button (click)="editDice(column.name)">{{getDiceDescription(column.name)}}</button>
+        <button mat-raised-button *ngIf="!valueEmpty(column.name)" (click)="editDice(column.name)">{{getDiceDescription(column.name)}}</button>
+        <button mat-raised-button *ngIf="valueEmpty(column.name)" (click)="editDice(column.name)">Empty</button>
     </div>
 </div>
