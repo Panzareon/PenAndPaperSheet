@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Rules } from "./rules";
 import { CharacterValue } from './character-value';
+import defaultRules from '../assets/rules.json';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,11 @@ export class RulesService {
   rulesChanged : CallableFunction[] = [];
 
   constructor() {
-    let storedRules = window.localStorage.getItem("rules");
-    if (storedRules !== "undefined") {
-      this.rules = JSON.parse(storedRules);
+    if ("rules" in window.localStorage) {
+      this.rules = JSON.parse(window.localStorage.getItem("rules"));
+    }
+    else {
+      this.rules = defaultRules;
     }
   }
 

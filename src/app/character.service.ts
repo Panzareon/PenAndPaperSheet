@@ -23,9 +23,8 @@ export class CharacterService {
   }
 
   createCharacter(): Character {
-    let storedCharacter = window.localStorage.getItem("character");
-    if (storedCharacter !== "undefined") {
-      return JSON.parse(storedCharacter);
+    if ("character" in window.localStorage) {
+      return JSON.parse(window.localStorage.getItem("character"));
     }
   }
 

@@ -21,6 +21,9 @@ export class StatsService {
   }
 
   getStatValue(character: Character, stat: string) : number{
+    if (!character) {
+      return null;
+    }
     return this.getStatValueWithModifiertInternal(character, this.getStat(stat));
   }
 
@@ -93,12 +96,12 @@ export class StatsService {
 
   evaluateCalculateStep(character: Character, step : CalculateStep) : number[] {
     const a = [];
-    if (step.skill) {
+    if (step.skill && character) {
       for (let skill of character.skills[step.skill.skillList]) {
         	a.push(Number(skill[step.skill.value]));
       }
     }
-    if (step.statCost) {
+    if (step.statCost && character) {
       for (let stat of this.stats.filter(x => x.canUpgrade)) {
         a.push(this.getStatCost(stat.name, character.stats[stat.name], character));
       }
