@@ -8,19 +8,19 @@
 				"description": "A simple hit enforced with Nen",
 				"dice": [
 					{
-						"type": 1,
+						"type": "Stat",
 						"statType": "Enhancer",
 						"dice": 6
 					}
 				],
 				"damage": [
 					{
-						"type": 0,
+						"type": "Fixed",
 						"number": 1,
 						"dice": 6
 					},
 					{
-						"type": 2,
+						"type": "AbsoluteStat",
 						"statType": "Strength"
 					}
 				],
@@ -33,7 +33,7 @@
 				"description": "Defense: if successful get half the damage",
 				"dice": [
 					{
-						"type": 1,
+						"type": "Stat",
 						"statType": "Strength",
 						"dice": 10
 					}
@@ -47,7 +47,7 @@
 				"description": "Defense: if successful get no damage",
 				"dice": [
 					{
-						"type": 1,
+						"type": "Stat",
 						"statType": "Dexterity",
 						"dice": 6
 					}
@@ -63,14 +63,14 @@
 				"description": "A simple dagger",
 				"dice": [
 					{
-						"type": 1,
+						"type": "Stat",
 						"statType": "Strength",
 						"dice": 6
 					}
 				],
 				"damage": [
 					{
-						"type": 0,
+						"type": "Fixed",
 						"number": 1,
 						"dice": 6
 					},

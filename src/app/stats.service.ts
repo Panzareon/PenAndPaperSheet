@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { StatType, CalculateStep, Calculation, Compare, CalculateConstants } from "./stat-type";
 import { RulesService } from "./rules.service";
 import { Character } from './character';
-import { CharacterComponent } from './character/character.component';
-import { CharacterValue } from './character-value';
 
 @Injectable({
   providedIn: 'root'

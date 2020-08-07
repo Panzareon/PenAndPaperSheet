@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-dice-dialog',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDiceDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data) { }
 
   ngOnInit(): void {
   }
 
+  getValue() {
+    return JSON.stringify(this.data.skill[this.data.column]);
+  }
+
+  setValue(jsonDice : string) {
+    this.data.skill[this.data.column] = JSON.parse(jsonDice);
+  }
 }

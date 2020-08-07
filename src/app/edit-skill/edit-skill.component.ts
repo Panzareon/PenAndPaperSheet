@@ -6,6 +6,8 @@ import { Skill } from '../skill';
 import { CharacterService } from '../character.service';
 import { Dice } from '../dice';
 import { DiceService } from '../dice.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditDiceDialogComponent } from '../edit-dice-dialog/edit-dice-dialog.component';
 
 @Component({
   selector: 'app-edit-skill',
@@ -20,7 +22,8 @@ export class EditSkillComponent implements OnInit {
     private rulesService : RulesService,
     private characterService : CharacterService,
     private diceService: DiceService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     const skillListName = this.route.snapshot.paramMap.get('skill-list');
@@ -30,7 +33,10 @@ export class EditSkillComponent implements OnInit {
   }
   
   editDice(column: string) {
-
+    const dialogRef = this.dialog.open(EditDiceDialogComponent,
+      {
+        data: {skill: this.skill, column: column}
+      });
   }
 
   getDiceDescription(column: string) {
