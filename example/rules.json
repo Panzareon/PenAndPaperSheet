@@ -139,7 +139,26 @@
 				},
 				"true": 2,
 				"false": 3
-			}
+			},
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "Specialist",
+					"constant": 0.5
+				},
+				{
+					"action": "multiply",
+					"statBase": "Emitter",
+					"condition": {
+						"check": {
+							"compareValue": "Main Type",
+							"compareWith": "Specialist"
+						},
+						"true": 0.5,
+						"false": 0.75
+					}
+				}
+			]
 		},
 		{
 			"name": "Emitter",
@@ -154,7 +173,19 @@
 				},
 				"true": 2,
 				"false": 3
-			}
+			},
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "Manipulator",
+					"constant": 0.5
+				},
+				{
+					"action": "multiply",
+					"statBase": "Enhancer",
+					"constant": 0.5
+				}
+			]
 		},
 		{
 			"name": "Enhancer",
@@ -169,7 +200,19 @@
 				},
 				"true": 2,
 				"false": 3
-			}
+			},
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "Emitter",
+					"constant": 0.5
+				},
+				{
+					"action": "multiply",
+					"statBase": "Transmuter",
+					"constant": 0.5
+				}
+			]
 		},
 		{
 			"name": "Transmuter",
@@ -184,7 +227,19 @@
 				},
 				"true": 2,
 				"false": 3
-			}
+			},
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "Enhancer",
+					"constant": 0.5
+				},
+				{
+					"action": "multiply",
+					"statBase": "Conjurer",
+					"constant": 0.5
+				}
+			]
 		},
 		{
 			"name": "Conjurer",
@@ -199,7 +254,26 @@
 				},
 				"true": 2,
 				"false": 3
-			}
+			},
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "Specialist",
+					"constant": 0.5
+				},
+				{
+					"action": "multiply",
+					"statBase": "Transmuter",
+					"condition": {
+						"check": {
+							"compareValue": "Main Type",
+							"compareWith": "Specialist"
+						},
+						"true": 0.5,
+						"false": 0.75
+					}
+				}
+			]
 		},
 		{
 			"name": "Specialist",
@@ -214,7 +288,33 @@
 				},
 				"true": 2,
 				"false": 3
-			}
+			},
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "Conjurer",
+					"condition": {
+						"check": {
+							"compareValue": "Main Type",
+							"compareWith": "Specialist"
+						},
+						"true": 0.5,
+						"false": 0
+					}
+				},
+				{
+					"action": "multiply",
+					"statBase": "Manipulator",
+					"condition": {
+						"check": {
+							"compareValue": "Main Type",
+							"compareWith": "Specialist"
+						},
+						"true": 0.5,
+						"false": 0
+					}
+				}
+			]
 		}
 	],
 	"skillLists": [
@@ -308,5 +408,8 @@
 				}
 			]
 		}
-	]
+	],
+	"properties": {
+		"roundStats": "floor"
+	}
 }

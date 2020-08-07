@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StatType, CalculateStep, Calculation, Compare } from "./stat-type";
+import { StatType, CalculateStep, Calculation, Compare, CalculateConstants } from "./stat-type";
 import { RulesService } from "./rules.service";
 import { Character } from './character';
 import { CharacterComponent } from './character/character.component';
@@ -23,31 +23,74 @@ export class StatsService {
   }
 
   getStatValue(character: Character, stat: string) : number{
-    return this.getStatValueInternal(character, this.getStat(stat));
+    return this.getStatValueWithModifiertInternal(character, this.getStat(stat));
   }
 
-  getStatValueInternal(character: Character, stat: StatType) : number{
+  private getStatValueWithModifiertInternal(character: Character, stat: StatType) : number{
+    let value = this.getStatValueInternal(character, stat);
+    if (stat.add) {
+      value = this.evaluateCalculateArray(character, stat.add, CalculateConstants.add, value);
+    }
+
+    switch (this.rulesService.rules.properties.roundStats) {
+      case CalculateConstants.floor:
+        value = Math.floor(value);
+      break
+      case CalculateConstants.ceil:
+        value = Math.ceil(value);
+      break
+      case CalculateConstants.round:
+        value = Math.round(value);
+      break
+    }
+
+    return value;
+  }
+
+  private getStatValueInternal(character: Character, stat: StatType) : number{
     if (stat.calculate) {
-      let value;
-      for (let calc of stat.calculate) {
-        switch (calc.action) {
-          case "add":
-            if (value === undefined) {
-              value = 0;
-            }
-            for (let individual of this.evaluateCalculateStep(character, calc)) {
-              value += individual;
-            }
-            
-          break;
-        }
-      }
-      if (value !== undefined) {
-        return value;
-      }
+      return this.evaluateCalculateArray(character, stat.calculate, CalculateConstants.add);
     }
 
     return character.stats[stat.name];
+  }
+
+  private evaluateCalculateArray(character: Character, steps : CalculateStep[], combineType : string, value? : number) : number {
+    for (let calc of steps) {
+      let currentValue = 0;
+      switch (calc.action) {
+        case CalculateConstants.add:
+          for (let individual of this.evaluateCalculateStep(character, calc)) {
+            currentValue += individual;
+          }
+
+        break;
+        case CalculateConstants.multiply:
+          currentValue = 1;
+          for (let individual of this.evaluateCalculateStep(character, calc)) {
+            currentValue *= individual;
+          }
+
+        break;
+      }
+
+      if (value === undefined) {
+        value = currentValue;
+      }
+      else {
+        switch (combineType) {
+          case CalculateConstants.add:
+            value += currentValue;
+          break;
+          case CalculateConstants.multiply:
+            value *= currentValue;
+          break;
+        }
+      }
+    }
+    if (value !== undefined) {
+      return value;
+    }
   }
 
   evaluateCalculateStep(character: Character, step : CalculateStep) : number[] {
@@ -61,6 +104,15 @@ export class StatsService {
       for (let stat of this.stats.filter(x => x.canUpgrade)) {
         a.push(this.getStatCost(stat.name, character.stats[stat.name], character));
       }
+    }
+    if (step.statBase) {
+      a.push(character.stats[step.statBase]);
+    }
+    if (step.constant !== undefined && step.constant !== null) {
+      a.push(step.constant);
+    }
+    if (step.condition) {
+      a.push(this.evaluate(step.condition.check, character) ? step.condition.true : step.condition.false);
     }
     return a;
   }

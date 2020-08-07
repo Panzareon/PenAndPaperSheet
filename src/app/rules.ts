@@ -6,4 +6,9 @@ export interface Rules {
     values : CharacterValue[],
     stats : StatType[],
     skillLists : SkillList[],
+    properties : RuleProperties,
+}
+
+export interface RuleProperties {
+    roundStats : string;
 }
