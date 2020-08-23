@@ -1,2 +1,49 @@
+<table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let dice">
+            <mat-form-field>
+                <mat-select [(value)]="dice.type">
+                    <mat-option *ngFor="let option of getDiceTypes()" value="{{option}}">{{option}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef>Number of Dice</th>
+        <td mat-cell *matCellDef="let dice">
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="dice.number" [disabled]="isReadonly(dice, 'number')">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="statType">
+        <th mat-header-cell *matHeaderCellDef>Stat</th>
+        <td mat-cell *matCellDef="let dice">
+            <mat-form-field>
+                <mat-select [(value)]="dice.statType" [disabled]="isReadonly(dice, 'statType')">
+                    <mat-option *ngFor="let stat of getStats()" value="{{stat}}">{{stat}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="dice">
+        <th mat-header-cell *matHeaderCellDef>Type of Dice</th>
+        <td mat-cell *matCellDef="let dice">
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="dice.dice" [disabled]="isReadonly(dice, 'dice')">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let dice">
+            <button mat-raised-button (click)="removeDice(dice)">Remove</button>
+        </td>
+    </ng-container>
 
-<textarea [ngModel]="getValue()" (ngModelChange)="setValue($event)"></textarea>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>
+
+<button mat-raised-button (click)="addDice()">Add</button>
