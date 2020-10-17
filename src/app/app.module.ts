@@ -20,6 +20,7 @@ import { EditSkillComponent } from './edit-skill/edit-skill.component';
 import { EditDiceDialogComponent } from './edit-dice-dialog/edit-dice-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (s: PlatformLocation) => s.getBaseHrefFromDOM(),
+      deps: [PlatformLocation]
+    }],
   bootstrap: [AppComponent],
   entryComponents: [
     ModifyDiceDialogComponent,
