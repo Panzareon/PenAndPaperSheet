@@ -5,9 +5,11 @@ import { StatsComponent } from './stats/stats.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { ImportExportComponent } from './import-export/import-export.component';
 import { EditSkillComponent } from './edit-skill/edit-skill.component';
+import { CharacterResolver } from "./CharacterResolver";
 
 const routes: Routes = [
   {path: 'character', component: CharacterComponent},
+  {path: 'character/:character-file', component: CharacterComponent, resolve: { character: CharacterResolver }},
   {path: 'stats', component: StatsComponent},
   {path: 'skills/:skill-list', component: SkillListComponent},
   {path: 'import', component: ImportExportComponent},

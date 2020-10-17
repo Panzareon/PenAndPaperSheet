@@ -3,6 +3,7 @@ import { Character } from '../character';
 import { CharacterService } from "../character.service";
 import { RulesService } from '../rules.service';
 import { CharacterValue } from '../character-value';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-character',
