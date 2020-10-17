@@ -19,6 +19,7 @@ import { CharacterOverviewComponent } from './character-overview/character-overv
 import { EditSkillComponent } from './edit-skill/edit-skill.component';
 import { EditDiceDialogComponent } from './edit-dice-dialog/edit-dice-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

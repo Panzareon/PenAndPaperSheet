@@ -20,7 +20,12 @@ export class CharacterService {
 
   createCharacter(): Character {
     if ("character" in window.localStorage) {
-      return JSON.parse(window.localStorage.getItem("character"));
+      try {
+        return JSON.parse(window.localStorage.getItem("character"));
+      }
+      catch(ex) {
+        return null;
+      }
     }
   }
 
