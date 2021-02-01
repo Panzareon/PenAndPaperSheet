@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Rules } from "./rules";
 import { CharacterValue } from './character-value';
-import defaultRules from '../assets/rules.json';
+import defaultRules from '../assets/rules/hxh.json';
 
 @Injectable({
   providedIn: 'root'
