@@ -4,6 +4,7 @@
 			"name": "Main Type",
 			"type": "Select",
 			"values": [
+				"",
 				"Manipulator",
 				"Emitter",
 				"Enhancer",
@@ -92,15 +93,8 @@
 			"newLine": true,
 			"label": "Strength:",
 			"canUpgrade": true,
-			"costMultiplier": 2
-		},
-		{
-			"name": "Speed",
-			"newGroup": false,
-			"newLine": true,
-			"label": "Speed:",
-			"canUpgrade": true,
-			"costMultiplier": 2
+			"costMultiplier": 2,
+			"startvalue": 1
 		},
 		{
 			"name": "Dexterity",
@@ -108,23 +102,35 @@
 			"newLine": true,
 			"label": "Dexterity:",
 			"canUpgrade": true,
-			"costMultiplier": 2
+			"costMultiplier": 2,
+			"startvalue": 1
 		},
 		{
-			"name": "Sense",
+			"name": "Charisma",
 			"newGroup": false,
 			"newLine": true,
-			"label": "Sense:",
+			"label": "Charisma:",
 			"canUpgrade": true,
-			"costMultiplier": 2
+			"costMultiplier": 2,
+			"startvalue": 1
 		},
 		{
-			"name": "Nen",
+			"name": "Intelligence",
 			"newGroup": false,
 			"newLine": true,
-			"label": "Nen:",
+			"label": "Intelligence:",
 			"canUpgrade": true,
-			"costMultiplier": 2
+			"costMultiplier": 2,
+			"startvalue": 1
+		},
+		{
+			"name": "Spirit",
+			"newGroup": false,
+			"newLine": true,
+			"label": "Spirit:",
+			"canUpgrade": true,
+			"costMultiplier": 2,
+			"startvalue": 1
 		},
 		{
 			"name": "Manipulator",
