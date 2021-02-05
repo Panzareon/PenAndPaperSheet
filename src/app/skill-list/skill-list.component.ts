@@ -16,7 +16,7 @@ import { Skill } from "../skill";
 })
 export class SkillListComponent implements OnInit {
   skillList : SkillList;
-
+  characterIndex : number;
   character: Character;
   constructor(private characterService: CharacterService,
      private diceService: DiceService,
@@ -29,6 +29,7 @@ export class SkillListComponent implements OnInit {
 
   ngOnInit(): void {
     this.character = this.characterService.getCharacter();
+    this.characterIndex = this.characterService.currentCharacter;
     const skillListName = this.route.snapshot.paramMap.get('skill-list');
     this.skillList = this.rulesService.rules.skillLists.find(x => x.name == skillListName);
   }

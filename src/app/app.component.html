@@ -1,9 +1,16 @@
 <div class="main">
     <h1>{{title}}</h1>
     <nav>
-        <a routerLink="/character">Character</a><br>
-        <a routerLink="/stats">Stats</a><br>
-        <span *ngFor="let skill of this.rulesService.rules?.skillLists"><a routerLink="/skills/{{skill.name}}">{{skill.name}}</a><br></span>
+        <mat-form-field name="selectPolicy">
+            <mat-select placeholder="{{characterName}}" (selectionChange)="selectCharacter($event.value)">
+                <mat-option *ngFor="let char of characterService.characters" [value]="char.name">
+                    {{char.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+        <a routerLink="/character/{{character}}">Character</a><br>
+        <a routerLink="/stats/{{character}}">Stats</a><br>
+        <span *ngFor="let skill of this.rulesService.rules?.skillLists"><a routerLink="/skills/{{character}}/{{skill.name}}">{{skill.name}}</a><br></span>
         <a routerLink="/import">Import/Export</a>
     </nav>
     <router-outlet></router-outlet>

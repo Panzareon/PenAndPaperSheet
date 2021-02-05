@@ -23,7 +23,13 @@ export class CharacterResolver implements Resolve<void> {
                 'Expires': '0'
             };
             const characterJson = await this.http.get<Character>(this.baseHref+'assets/character/'+characterFile+'.json', {headers:headers}).toPromise();
-            this.characterService.loadCharacter(characterJson);
+            let characterIndex = this.characterService.loadCharacter(characterJson);
+            this.characterService.selectCharacter(characterIndex);
+        }
+        const character = route.paramMap.get('char');
+        if (character)
+        {
+            this.characterService.selectCharacter(Number(character));
         }
     }
 }

@@ -19,14 +19,22 @@ export class ImportExportComponent implements OnInit {
     private messagingService: MessageService) { }
 
   ngOnInit(): void {
-    this.characterJson = JSON.stringify(this.characterService.getCharacter());
+    this.characterJson = JSON.stringify(this.characterService.characters);
     this.rulesJson = JSON.stringify(this.rulesService.rules);
   }
 
   loadCharacter(): void {
     try {
       let character = JSON.parse(this.characterJson);
-      if (character) {
+      if (Array.isArray(character)) {
+        this.characterService.characters = Array();
+        character.forEach(element => {
+          this.characterService.loadCharacter(element);
+          this.messagingService.add("Loaded Character");
+        });
+      }
+      else if (character)
+      {
         this.characterService.loadCharacter(character);
         this.messagingService.add("Loaded Character");
       }
