@@ -9,11 +9,12 @@ import { CharacterResolver } from "./CharacterResolver";
 import { RulesResolver } from "./RulesResolver";
 
 const routes: Routes = [
+  {path: '', component: CharacterComponent, resolve: { character: CharacterResolver, rules: RulesResolver }},
   {path: 'character/:char', component: CharacterComponent, resolve: { character: CharacterResolver, rules: RulesResolver }},
   {path: 'load/:character-file', component: CharacterComponent, resolve: { character: CharacterResolver, rules: RulesResolver }},
   {path: 'stats/:char', component: StatsComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
   {path: 'skills/:char/:skill-list', component: SkillListComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
-  {path: 'import', component: ImportExportComponent, resolve: {rules: RulesResolver }},
+  {path: 'import', component: ImportExportComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
   {path: 'edit-skill/:char/:skill-list/:skill', component: EditSkillComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
 ];
 

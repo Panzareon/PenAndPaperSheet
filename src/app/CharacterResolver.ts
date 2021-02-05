@@ -31,5 +31,9 @@ export class CharacterResolver implements Resolve<void> {
         {
             this.characterService.selectCharacter(Number(character));
         }
+        else
+        {
+            this.characterService.selectCharacter(0);
+        }
     }
 }
