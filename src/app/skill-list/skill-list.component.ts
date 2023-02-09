@@ -70,6 +70,6 @@ export class SkillListComponent implements OnInit {
       "id": this.character.skills[this.getName()].map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1 ?? 1,
     }
     this.character.skills[this.getName()].push(skill);
-    this.router.navigate(["edit-skill/" + this.getName() + "/" + skill.id])
+    this.router.navigate(["edit-skill/" + this.characterIndex + "/" + this.getName() + "/" + skill.id])
   }
 }
