@@ -63,8 +63,15 @@
 			"newGroup": false,
 			"label": "Max Hp:",
 			"canUpgrade": true,
-			"costMultiplier": 0.1,
-			"startvalue": 20
+			"costMultiplier": 0.05,
+			"startvalue": 10,
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "MaxTp",
+					"constant": 0.2
+				}
+			]
 		},
 		{
 			"name": "Aura",
@@ -79,7 +86,14 @@
 			"label": "Max Aura:",
 			"canUpgrade": true,
 			"costMultiplier": 0.1,
-			"startvalue": 10
+			"startvalue": 5,
+			"add": [
+				{
+					"action": "multiply",
+					"statBase": "MaxTp",
+					"constant": 0.1
+				}
+			]
 		},
 		{
 			"name": "Strength",
