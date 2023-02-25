@@ -27,11 +27,16 @@ export class StatsComponent implements OnInit {
   }
 
   getLabel(stat: string): string {
+    if (this.statsService.previousStatDependsOnStat(stat))
+    {
+      return "/";
+    }
+
     return this.statsService.getStat(stat).label;
   }
 
   addNewline(stat: string) : boolean {
-    return this.statsService.getStat(stat).newLine;
+    return !this.statsService.previousStatDependsOnStat(stat);
   }
 
   newGroup(stat: string) : boolean {

@@ -27,6 +27,12 @@ export class StatsService {
     return this.getStatValueWithModifiertInternal(character, this.getStat(stat));
   }
 
+  previousStatDependsOnStat(statName: string) : boolean {
+    var stat = this.getStat(statName);
+    var previousStat = this.stats.indexOf(stat) - 1;
+    return previousStat >= 0 && this.stats[previousStat].dependsOn == statName;
+  }
+
   private getStatValueWithModifiertInternal(character: Character, stat: StatType) : number{
     let value = this.getStatValueInternal(character, stat);
     if (stat.add) {

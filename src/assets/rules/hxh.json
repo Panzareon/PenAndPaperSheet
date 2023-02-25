@@ -25,7 +25,6 @@
 		{
 			"name": "Tp",
 			"newGroup": true,
-			"newLine": true,
 			"label": "Tp:",
 			"canUpgrade": false,
 			"dependsOn": "MaxTp",
@@ -48,15 +47,13 @@
 		{
 			"name": "MaxTp",
 			"newGroup": false,
-			"newLine": false,
-			"label": "/",
+			"label": "Max Tp:",
 			"canUpgrade": false,
 			"startvalue": 60
 		},
 		{
 			"name": "Hp",
 			"newGroup": true,
-			"newLine": true,
 			"label": "Hp:",
 			"canUpgrade": false,
 			"dependsOn": "MaxHp"
@@ -64,8 +61,7 @@
 		{
 			"name": "MaxHp",
 			"newGroup": false,
-			"newLine": false,
-			"label": "/",
+			"label": "Max Hp:",
 			"canUpgrade": true,
 			"costMultiplier": 0.1,
 			"startvalue": 20
@@ -73,7 +69,6 @@
 		{
 			"name": "Aura",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Aura:",
 			"canUpgrade": false,
 			"dependsOn": "MaxAura"
@@ -81,8 +76,7 @@
 		{
 			"name": "MaxAura",
 			"newGroup": false,
-			"newLine": false,
-			"label": "/",
+			"label": "Max Aura:",
 			"canUpgrade": true,
 			"costMultiplier": 0.1,
 			"startvalue": 10
@@ -90,7 +84,6 @@
 		{
 			"name": "Strength",
 			"newGroup": true,
-			"newLine": true,
 			"label": "Strength:",
 			"canUpgrade": true,
 			"costMultiplier": 2,
@@ -99,7 +92,6 @@
 		{
 			"name": "Dexterity",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Dexterity:",
 			"canUpgrade": true,
 			"costMultiplier": 2,
@@ -108,7 +100,6 @@
 		{
 			"name": "Charisma",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Charisma:",
 			"canUpgrade": true,
 			"costMultiplier": 2,
@@ -117,7 +108,6 @@
 		{
 			"name": "Intelligence",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Intelligence:",
 			"canUpgrade": true,
 			"costMultiplier": 2,
@@ -126,7 +116,6 @@
 		{
 			"name": "Spirit",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Spirit:",
 			"canUpgrade": true,
 			"costMultiplier": 2,
@@ -135,7 +124,6 @@
 		{
 			"name": "Manipulator",
 			"newGroup": true,
-			"newLine": true,
 			"label": "Manipulator:",
 			"canUpgrade": true,
 			"costMultiplier": {
@@ -169,7 +157,6 @@
 		{
 			"name": "Emitter",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Emitter:",
 			"canUpgrade": true,
 			"costMultiplier": {
@@ -196,7 +183,6 @@
 		{
 			"name": "Enhancer",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Enhancer:",
 			"canUpgrade": true,
 			"costMultiplier": {
@@ -223,7 +209,6 @@
 		{
 			"name": "Transmuter",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Transmuter:",
 			"canUpgrade": true,
 			"costMultiplier": {
@@ -250,7 +235,6 @@
 		{
 			"name": "Conjurer",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Conjurer:",
 			"canUpgrade": true,
 			"costMultiplier": {
@@ -284,7 +268,6 @@
 		{
 			"name": "Specialist",
 			"newGroup": false,
-			"newLine": true,
 			"label": "Specialist:",
 			"canUpgrade": true,
 			"costMultiplier": {
