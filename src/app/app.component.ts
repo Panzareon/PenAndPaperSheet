@@ -1,7 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { CharacterService } from './character.service';
 import { RulesService } from './rules.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { Event, NavigationEnd, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -34,15 +35,21 @@ export class AppComponent {
     this.rulesService.storeRules();
   }
 
-  selectCharacter(name)
+  selectCharacter(e)
   {
-    for (let i = 0; i < this.characterService.characters.length; i++)
+    let index = e.value;
+    if (index == -1)
     {
-      if (this.characterService.characters[i].name == name)
-      {
-        this.characterService.selectCharacter(i);
-        this.router.navigate(["/character",i]);
-      }
+      var character = this.characterService.createNewCharacter(this.rulesService.rules);
+      index = this.characterService.characters.indexOf(character);
+      var selectCharacterElement = e.source as HTMLSelectElement;
+      selectCharacterElement.value = index;
+    }
+
+    if (this.characterService.characters[index] != undefined)
+    {
+      this.characterService.selectCharacter(index);
+      this.router.navigate(["/character",index]);
     }
   }
 }

@@ -1,11 +1,12 @@
 <div class="main">
     <h1>{{title}}</h1>
     <nav>
-        <mat-form-field name="selectPolicy">
-            <mat-select placeholder="{{characterName}}" (selectionChange)="selectCharacter($event.value)">
-                <mat-option *ngFor="let char of characterService.characters" [value]="char.name">
+        <mat-form-field name="selectCharacter">
+            <mat-select [value]="characterService.currentCharacter" (selectionChange)="selectCharacter($event)">
+                <mat-option *ngFor="let char of characterService.characters; let i = index" [value]="i">
                     {{char.name}}
                 </mat-option>
+                <mat-option [value]="-1">Create New</mat-option>
             </mat-select>
         </mat-form-field><br>
         <a routerLink="/character/{{character}}">Character</a><br>

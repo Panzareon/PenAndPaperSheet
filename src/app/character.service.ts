@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Character } from './character';
 import { StatsService } from './stats.service';
 import { Subject } from "rxjs";
+import { Rules } from './rules';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,26 @@ export class CharacterService {
   {
     this.currentCharacter = index;
     this.characterChanged.next(this.getCharacter());
+  }
+
+  createNewCharacter(rules : Rules) : Character {
+    var character : Character = {
+      name:'',
+      stats: {},
+      skills: {},
+      values: {},
+    }
+    rules.skillLists.forEach(x =>{
+      character.skills[x.name] = [];
+    });
+    rules.values.forEach(x => {
+      character.values[x.name] = x.values?.length > 0 ? x.values[0] : "";
+    })
+    rules.stats.forEach(x => {
+      character.stats[x.name] = x.startvalue ?? 0;
+    })
+    this.characters.push(character);
+    return character;
   }
 
   createCharacter(): Character[] {
