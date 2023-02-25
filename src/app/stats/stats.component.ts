@@ -65,4 +65,24 @@ export class StatsComponent implements OnInit {
   statCost(stat: string) {
     return this.statsService.getStatCost(stat, this.character.stats[stat], this.character);
   }
+
+  statDifferent(stat: string) : string{
+    if (this.statsService.getStat(stat).calculate !== undefined)
+    {
+      return "";
+    }
+    var baseValue = this.character.stats[stat];
+    var actualValue = this.statsService.getStatValue(this.character, stat);
+    if (baseValue == actualValue)
+    {
+      return "";
+    }
+
+    if (actualValue > baseValue)
+    {
+      return "+" + (actualValue - baseValue);
+    }
+
+    return "-" + (baseValue - actualValue);
+  }
 }
