@@ -3,6 +3,12 @@
     <span class="stat" *ngFor="let stat of getStats()">
         <br *ngIf="newGroup(stat)">
         <br *ngIf="addNewline(stat)">
-        {{getLabel(stat)}}{{getStatValue(stat)}}
+        {{getLabel(stat)}}
+        <mat-form-field *ngIf="canEdit(stat)">
+            <input matInput type="number" [(ngModel)]="character.stats[stat]">
+        </mat-form-field>
+        <span *ngIf="!canEdit(stat)">
+            {{getStatValue(stat)}}
+        </span>
     </span>
 </div>
