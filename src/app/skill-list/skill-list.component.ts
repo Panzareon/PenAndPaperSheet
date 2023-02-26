@@ -67,9 +67,17 @@ export class SkillListComponent implements OnInit {
 
   addSkill() {
     const skill = {
-      "id": this.character.skills[this.getName()].map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1 ?? 1,
+      "id": this.getSkills().map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1 ?? 1,
     }
-    this.character.skills[this.getName()].push(skill);
+    this.getSkills().push(skill);
     this.router.navigate(["edit-skill/" + this.characterIndex + "/" + this.getName() + "/" + skill.id])
+  }
+
+  deleteSkill(skillId : number) {
+    this.character.skills[this.getName()] = this.getSkills().filter(e => e.id !== skillId);
+  }
+
+  getSkills() : Skill[] {
+    return this.character.skills[this.getName()];
   }
 }
