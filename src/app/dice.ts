@@ -1,19 +1,19 @@
-export enum NumberOfDiceType {
-    Fixed = "Fixed",
-    Stat = "Stat",
+export class NumberOfDiceType {
+    public static readonly Fixed = "Fixed";
+    public static readonly Stat = "Stat";
     /**
      * The value of the stat, instead of dice.
      */
-    AbsoluteStat = "AbsoluteStat",
+    public static readonly AbsoluteStat = "AbsoluteStat";
 
     /**
      * A constant number.
      */
-    Constant = "Constant",
+    public static readonly Constant = "Constant";
 }
 
 export interface Dice {
-    type: NumberOfDiceType;
+    type: string;
 
     /**
      * The number of dice, if type is set to Fixed.
