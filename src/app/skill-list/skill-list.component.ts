@@ -39,7 +39,7 @@ export class SkillListComponent implements OnInit {
   }
 
   rollSkill(skill: Skill, column: SkillListColumn): void {
-    let dice = skill[column.name] as Dice[];
+    let dice = skill.values[column.name] as Dice[];
     this.diceService.rollDice(this.character,dice , column.diceModifier, diceResult =>
       {
         this.messageService.add(this.diceService.toText(diceResult));
@@ -47,12 +47,12 @@ export class SkillListComponent implements OnInit {
   }
 
   statCost(skill: Skill, column: SkillListColumn): void {
-    let cost = skill[column.name] as number;
+    let cost = skill.values[column.name] as number;
     this.character.stats[column.stat] -= cost;
   }
 
   getDiceDescription(skill: Skill, columnName: string) : string {
-    return this.diceService.getDiceDescription(skill[columnName] as Dice[], this.character);
+    return this.diceService.getDiceDescription(skill.values[columnName] as Dice[], this.character);
   }
 
   showColumn(columnName: string): boolean {
@@ -68,6 +68,7 @@ export class SkillListComponent implements OnInit {
   addSkill() {
     const skill = {
       "id": this.getSkills().map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1 ?? 1,
+      "values": {}
     }
     this.getSkills().push(skill);
     this.router.navigate(["edit-skill/" + this.characterIndex + "/" + this.getName() + "/" + skill.id])

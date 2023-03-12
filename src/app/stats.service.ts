@@ -104,7 +104,7 @@ export class StatsService {
     const a = [];
     if (step.skill && character) {
       for (let skill of character.skills[step.skill.skillList]) {
-        	a.push(Number(skill[step.skill.value]));
+        	a.push(Number(skill.values[step.skill.value]));
       }
     }
     if (step.statCost && character) {

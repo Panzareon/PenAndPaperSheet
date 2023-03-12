@@ -8,6 +8,7 @@ import { Rules } from './rules';
   providedIn: 'root'
 })
 export class CharacterService {
+  public currentVersion: number = 1;
   characters: Character[] = this.createCharacter();
   public currentCharacter: number = 0;
 
@@ -20,6 +21,7 @@ export class CharacterService {
   }
 
   loadCharacter(character: Character) : number {
+    this.migrateCharacterIfNecessary(character);
     for (let i = 0; i < this.characters.length; i++)
     {
       if (this.characters[i].name == character.name)
@@ -40,6 +42,7 @@ export class CharacterService {
 
   createNewCharacter(rules : Rules) : Character {
     var character : Character = {
+      version: this.currentVersion,
       name:'',
       stats: {},
       skills: {},
@@ -71,5 +74,27 @@ export class CharacterService {
 
   storeCharacter() {
     window.localStorage.setItem("characters", JSON.stringify(this.characters));
+  }
+
+  private migrateCharacterIfNecessary(character: Character) {
+    if (character.version === undefined)
+    {
+      character.version = this.currentVersion;
+      for (let skillType in character.skills)
+      {
+        for (let skill of character.skills[skillType])
+        {
+          skill.values = {};
+          for (let column in skill)
+          {
+            if (column != "id" && column != "values")
+            {
+              skill.values[column] = skill[column];
+              skill[column] = undefined;
+            }
+          }
+        }
+      }
+    }
   }
 }

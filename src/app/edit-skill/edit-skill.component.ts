@@ -35,15 +35,15 @@ export class EditSkillComponent implements OnInit {
   editDice(column: string) {
     const dialogRef = this.dialog.open(EditDiceDialogComponent,
       {
-        data: {skill: this.skill, column: column}
+        data: {skill: this.skill.values, column: column}
       });
   }
 
   valueEmpty(column: string) : boolean {
-    return this.skill[column] === undefined || this.skill[column] === null || this.skill[column] == "";
+    return this.skill.values[column] === undefined || this.skill[column] === null || this.skill[column] == "";
   }
 
   getDiceDescription(column: string) {
-    return this.diceService.getDiceDescription(this.skill[column] as Dice[])
+    return this.diceService.getDiceDescription(this.skill.values[column] as Dice[])
   }
 }
