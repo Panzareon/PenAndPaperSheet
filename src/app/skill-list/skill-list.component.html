@@ -33,4 +33,5 @@
   <tr mat-row *matRowDef="let row; columns: getAvailableColumnNames()"></tr>
 </table>
 
-<button mat-raised-button (click)="addSkill()">Add</button>
+<button mat-raised-button (click)="addNewSkill()">Add New</button>
+<button mat-raised-button (click)="addSkill()" *ngIf="skillList.availableSkills?.length > 0">Add Existing</button>

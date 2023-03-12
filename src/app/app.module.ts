@@ -21,6 +21,7 @@ import { EditDiceDialogComponent } from './edit-dice-dialog/edit-dice-dialog.com
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
+import { AddExistingSkillComponent } from './add-existing-skill/add-existing-skill.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
     CharacterOverviewComponent,
     EditSkillComponent,
     EditDiceDialogComponent,
+    AddExistingSkillComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
   entryComponents: [
     ModifyDiceDialogComponent,
     EditDiceDialogComponent,
+    AddExistingSkillComponent,
   ]
 })
 export class AppModule { }

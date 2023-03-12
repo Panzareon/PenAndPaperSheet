@@ -1,6 +1,11 @@
 import { Dice } from "./dice";
+import { SkillRequirement } from "./skill-requirement";
 
 export interface Skill {
     id : number,
-    values : {[id:string] : number | string | Dice[]}
+    requirements? : SkillRequirement[],
+    values : {
+        name : string,
+        [id:string] : number | string | Dice[]
+    }
 }

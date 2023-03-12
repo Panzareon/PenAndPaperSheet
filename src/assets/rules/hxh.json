@@ -367,6 +367,67 @@
 					"type": "text",
 					"caption": "Tp Spent"
 				}
+			],
+			"availableSkills":[
+				{
+					"id": 1,
+					"values": {
+						"name": "Strike",
+						"description": "A simple hit enforced with Nen",
+						"dice": [
+							{
+								"type": "Stat",
+								"statType": "Enhancer",
+								"dice": 6
+							}
+						],
+						"damage": [
+							{
+								"type": "Fixed",
+								"number": 1,
+								"dice": 6
+							},
+							{
+								"type": "AbsoluteStat",
+								"statType": "Strength"
+							}
+						],
+						"cost": 0,
+						"tpSpent": 0
+					}
+				},
+				{
+					"id": 2,
+					"values": {
+						"name": "Block",
+						"description": "Defense: if successful get half the damage",
+						"dice": [
+							{
+								"type": "Stat",
+								"statType": "Strength",
+								"dice": 10
+							}
+						],
+						"cost": 0,
+						"tpSpent": 0
+					}
+				},
+				{
+					"id": 3,
+					"values": {
+						"name": "Dodge",
+						"description": "Defense: if successful get no damage",
+						"dice": [
+							{
+								"type": "Stat",
+								"statType": "Dexterity",
+								"dice": 6
+							}
+						],
+						"cost": 0,
+						"tpSpent": 0
+					}
+				}
 			]
 		},
 		{
@@ -409,7 +470,8 @@
 						}
 					]
 				}
-			]
+			],
+			"availableSkills":[]
 		}
 	],
 	"properties": {

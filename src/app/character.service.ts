@@ -84,7 +84,7 @@ export class CharacterService {
       {
         for (let skill of character.skills[skillType])
         {
-          skill.values = {};
+          skill.values = {name:null};
           for (let column in skill)
           {
             if (column != "id" && column != "values")

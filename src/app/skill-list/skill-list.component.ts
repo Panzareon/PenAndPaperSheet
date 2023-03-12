@@ -8,6 +8,8 @@ import { RulesService } from '../rules.service';
 import { SkillList, SkillListColumn } from '../skill-list';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Skill } from "../skill";
+import { AddExistingSkillComponent } from '../add-existing-skill/add-existing-skill.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-skill-list',
@@ -23,7 +25,8 @@ export class SkillListComponent implements OnInit {
      private messageService: MessageService,
      private rulesService: RulesService,
      private route: ActivatedRoute,
-     private router: Router) { 
+     private router: Router,
+     private dialog: MatDialog) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -66,9 +69,17 @@ export class SkillListComponent implements OnInit {
   }
 
   addSkill() {
+    const dialogRef = this.dialog.open(AddExistingSkillComponent,
+      {
+        data: {skillList: this.skillList, character: this.character}
+      });
+  }
+  addNewSkill() {
     const skill = {
       "id": this.getSkills().map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1 ?? 1,
-      "values": {}
+      "values": {
+        name : "",
+      }
     }
     this.getSkills().push(skill);
     this.router.navigate(["edit-skill/" + this.characterIndex + "/" + this.getName() + "/" + skill.id])
