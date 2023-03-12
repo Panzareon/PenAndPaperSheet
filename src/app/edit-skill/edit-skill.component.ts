@@ -28,7 +28,7 @@ export class EditSkillComponent implements OnInit {
   ngOnInit(): void {
     const skillListName = this.route.snapshot.paramMap.get('skill-list');
     this.skillList = this.rulesService.rules.skillLists.find(x => x.name == skillListName);
-    const skill = this.route.snapshot.paramMap.get('skill');
+    const skill = +this.route.snapshot.paramMap.get('skill');
     this.skill = this.characterService.getCharacter().skills[this.skillList.name].find(x => x.id == skill);
   }
   
