@@ -368,16 +368,16 @@
 					"caption": "Tp Spent"
 				}
 			],
-			"availableSkills":[
+			"availableSkills": [
 				{
 					"id": 1,
 					"values": {
 						"name": "Strike",
-						"description": "A simple hit enforced with Nen",
+						"description": "A simple bare-knuckle hit",
 						"dice": [
 							{
 								"type": "Stat",
-								"statType": "Enhancer",
+								"statType": "Strength",
 								"dice": 6
 							}
 						],
@@ -471,7 +471,7 @@
 					]
 				}
 			],
-			"availableSkills":[]
+			"availableSkills": []
 		}
 	],
 	"properties": {
