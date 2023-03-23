@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { AddExistingSkillComponent } from './add-existing-skill/add-existing-skill.component';
+import { EditRequirementsComponent } from './edit-requirements/edit-requirements.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddExistingSkillComponent } from './add-existing-skill/add-existing-ski
     EditSkillComponent,
     EditDiceDialogComponent,
     AddExistingSkillComponent,
+    EditRequirementsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { AddExistingSkillComponent } from './add-existing-skill/add-existing-ski
     ModifyDiceDialogComponent,
     EditDiceDialogComponent,
     AddExistingSkillComponent,
+    EditRequirementsComponent,
   ]
 })
 export class AppModule { }

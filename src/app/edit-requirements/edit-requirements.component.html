@@ -1,0 +1,57 @@
+<table mat-table [dataSource]="dataSource" actions={[]}>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let row">
+            <mat-select [(value)]="row.type">
+                <mat-option value="Stat">Stat</mat-option>
+                <mat-option value="Skill">Skill</mat-option>
+            </mat-select>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stat">
+        <th mat-header-cell *matHeaderCellDef>Stat</th>
+        <td mat-cell *matCellDef="let row">
+            <mat-select [(value)]="row.stat" *ngIf="isStatRequirement(row)">
+                <mat-option *ngFor="let stat of rulesService.rules.stats" value="{{stat.name}}">{{stat.name}}</mat-option>
+            </mat-select>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="minStatValue">
+        <th mat-header-cell *matHeaderCellDef>Min Value</th>
+        <td mat-cell *matCellDef="let row">
+            <input matInput type="number" [(ngModel)]="row.minStatValue" *ngIf="isStatRequirement(row)">
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="skillType">
+        <th mat-header-cell *matHeaderCellDef>Required Skill Type</th>
+        <td mat-cell *matCellDef="let row">
+            <mat-select [(value)]="row.skillType" *ngIf="isSkillRequirement(row)">
+                <mat-option *ngFor="let skill of rulesService.rules.skillLists" value="{{skill.name}}">{{skill.name}}</mat-option>
+            </mat-select>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="skillName">
+        <th mat-header-cell *matHeaderCellDef>Required Skill</th>
+        <td mat-cell *matCellDef="let row">
+            <mat-select [(value)]="row.skillName" *ngIf="row.skillType">
+                <mat-option *ngFor="let availableSkill of getSkillList(row)" value="{{availableSkill.values.name}}">{{availableSkill.values.name}}</mat-option>
+            </mat-select>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">
+            <a mat-raised-button (click)="removeRow(row)">Remove</a>
+        </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="getAvailableColumnNames()"></tr>
+  <tr mat-row *matRowDef="let row; columns: getAvailableColumnNames()"></tr>
+</table>
+
+<a mat-raised-button (click)="addRow()">Add</a>

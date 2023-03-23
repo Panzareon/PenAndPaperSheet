@@ -11,6 +11,8 @@ import { Skill } from "../skill";
 import { AddExistingSkillComponent } from '../add-existing-skill/add-existing-skill.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { EditRequirementsComponent } from '../edit-requirements/edit-requirements.component';
+import { SkillRequirement } from '../skill-requirement';
 
 @Component({
   selector: 'app-skill-list',
@@ -70,6 +72,10 @@ export class SkillListComponent implements OnInit {
 
   getAvailableColumnNames() {
     const columns = this.skillList.availableColumns.map(x => "col" + x.name);
+    if (this.character === undefined)
+    {
+      columns.push("requirements");
+    }
     columns.push("actions");
     return columns;
   }
@@ -106,6 +112,20 @@ export class SkillListComponent implements OnInit {
     this.dataSource._updateChangeSubscription();
   }
 
+  editRequirements(skillId: number)
+  {
+    const skill = this.dataSource.data.find(e => e.id === skillId);
+    const dialogRef = this.dialog.open(EditRequirementsComponent,
+      {
+        data: {skill: skill }
+      });
+    dialogRef.afterClosed().subscribe(x => {
+      if (skill.requirements.length == 0)
+      {
+        skill.requirements = undefined;
+      }
+    });
+  }
   getSkills() : Skill[] {
     if (this.character === undefined)
     {
@@ -113,5 +133,8 @@ export class SkillListComponent implements OnInit {
     }
 
     return this.character.skills[this.getName()];
+  }
+  displayRequirements(requirements: SkillRequirement[]) : string {
+    return JSON.stringify(requirements);
   }
 }
