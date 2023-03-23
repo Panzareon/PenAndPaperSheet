@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { Character } from '../character';
 import { Dice } from '../dice';
 import { DiceService } from '../dice.service';
@@ -18,6 +19,7 @@ export class AddExistingSkillComponent implements OnInit {
   skillList : SkillList;
   dataSource : Skill[];
   character: Character;
+  parentDataSource : MatTableDataSource<Skill>;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data,
@@ -28,6 +30,11 @@ export class AddExistingSkillComponent implements OnInit {
   ngOnInit(): void {
     this.skillList = this.data.skillList;
     this.character = this.data.character;
+    this.parentDataSource = this.data.parentDataSource;
+    this.updateDataSource();
+  }
+
+  updateDataSource() {
     this.dataSource = this.rulesService.rules.skillLists.find(x => x.name === this.skillList.name).availableSkills.filter(x => this.isAvailable(x));
   }
 
@@ -46,8 +53,17 @@ export class AddExistingSkillComponent implements OnInit {
     let skill = this.skillList.availableSkills.find(x => x.id === skillId);
     let copiedSkill = this.deepCopy(skill);
     let skills = this.character.skills[this.skillList.name];
-    copiedSkill.id = skills.map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1 ?? 1;
-    this.character.skills[this.skillList.name] = skills.concat(copiedSkill);
+    if (skills.length == 0)
+    {
+      copiedSkill.id = 1;
+    }
+    else
+    {
+      copiedSkill.id = skills.map(x => x.id as number).reduce((a, b) => Math.max(a,b)) + 1;
+    }
+    this.parentDataSource.data.push(copiedSkill);
+    this.parentDataSource._updateChangeSubscription();
+    this.updateDataSource();
   }
 
   private isAvailable(skill : Skill) : boolean {

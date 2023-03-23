@@ -29,7 +29,14 @@ export class EditSkillComponent implements OnInit {
     const skillListName = this.route.snapshot.paramMap.get('skill-list');
     this.skillList = this.rulesService.rules.skillLists.find(x => x.name == skillListName);
     const skill = +this.route.snapshot.paramMap.get('skill');
-    this.skill = this.characterService.getCharacter().skills[this.skillList.name].find(x => x.id == skill);
+    if (this.route.snapshot.paramMap.get('char'))
+    {
+      this.skill = this.characterService.getCharacter().skills[this.skillList.name].find(x => x.id == skill);
+    }
+    else
+    {
+      this.skill = this.skillList.availableSkills.find(x => x.id == skill);
+    }
   }
   
   editDice(column: string) {

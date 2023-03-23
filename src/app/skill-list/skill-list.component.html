@@ -1,13 +1,16 @@
 <h3>{{getName()}}</h3>
 
-<table mat-table [dataSource]="character.skills[getName()]" actions={[]}>
+<table mat-table [dataSource]="dataSource" actions={[]}>
     <ng-container *ngFor="let column of skillList.availableColumns" matColumnDef="col{{column.name}}">
         <th mat-header-cell *matHeaderCellDef>{{column.caption}}</th>
         <ng-container  *ngIf="column.type == 'text'">
             <td mat-cell *matCellDef="let row">{{row.values[column.name]}}</td>
         </ng-container>
         <ng-container  *ngIf="column.type == 'dice'">
-            <td mat-cell *matCellDef="let row"><button mat-raised-button *ngIf="row.values[column.name]" (click)="rollSkill(row, column)">{{getDiceDescription(row, column.name)}}</button></td>
+            <td mat-cell *matCellDef="let row">
+                <button mat-raised-button *ngIf="row.values[column.name] && character !== undefined" (click)="rollSkill(row, column)">{{getDiceDescription(row, column.name)}}</button>
+                <ng-container *ngIf="row.values[column.name] && character === undefined">{{getDiceDescription(row, column.name)}}</ng-container>
+            </td>
         </ng-container>
         <ng-container  *ngIf="column.type == 'statCost'">
             <td mat-cell *matCellDef="let row">
@@ -23,7 +26,8 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let row">
-            <a mat-raised-button href="/edit-skill/{{characterIndex}}/{{skillList.name}}/{{row.id}}">Edit</a>
+            <a mat-raised-button *ngIf="character !== undefined" href="/edit-skill/{{characterIndex}}/{{skillList.name}}/{{row.id}}">Edit</a>
+            <a mat-raised-button *ngIf="character === undefined" href="/edit-skill/{{skillList.name}}/{{row.id}}">Edit</a>
             <a mat-raised-button (click)="deleteSkill(row.id)">Remove</a>
         </td>
     </ng-container>
@@ -34,4 +38,4 @@
 </table>
 
 <button mat-raised-button (click)="addNewSkill()">Add New</button>
-<button mat-raised-button (click)="addSkill()" *ngIf="skillList.availableSkills?.length > 0">Add Existing</button>
+<button mat-raised-button (click)="addSkill()" *ngIf="skillList.availableSkills?.length > 0 && character !== undefined">Add Existing</button>

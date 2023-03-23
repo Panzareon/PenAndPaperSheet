@@ -14,8 +14,10 @@ const routes: Routes = [
   {path: 'load/:character-file', component: CharacterComponent, resolve: { character: CharacterResolver, rules: RulesResolver }},
   {path: 'stats/:char', component: StatsComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
   {path: 'skills/:char/:skill-list', component: SkillListComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
+  {path: 'skills/:skill-list', component: SkillListComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
   {path: 'import', component: ImportExportComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
   {path: 'edit-skill/:char/:skill-list/:skill', component: EditSkillComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
+  {path: 'edit-skill/:skill-list/:skill', component: EditSkillComponent, resolve: {character: CharacterResolver, rules: RulesResolver }},
 ];
 
 @NgModule({
